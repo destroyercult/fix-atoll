@@ -2070,7 +2070,15 @@ public partial class MainWindow : Window
 
     public void ShowToast(string glyph, string title, string? text, Action? onClick = null, Brush? badge = null, int ms = 2600)
     {
-        if (_mode == Mode.Claude || _hidden) return;
+        if (_mode == Mode.Claude) return;
+        if (_hidden)
+        {
+            // folded away by auto-hide: the notice brings the island out (it folds away again once the notice is gone);
+            // hidden by hand, it stays hidden as before
+            if (!(_autoHidden && _settings.AutoHide)) return;
+            _autoHideIdleSince = DateTime.UtcNow;
+            ShowIsland();
+        }
         ToastIcon.Text = glyph;
         ToastTitle.Text = title;
         ToastText.Text = text ?? "";

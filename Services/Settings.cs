@@ -120,6 +120,8 @@ public sealed class Settings
     public bool LockPosition { get; set; }
     /// <summary>The island folds away by itself (like the "hide" arrow) while the cursor is far from it and nothing is going on; the cursor at the top edge brings it back.</summary>
     public bool AutoHide { get; set; }
+    /// <summary>Seconds with the cursor away (and nothing going on) before auto-hide folds the island away, 2…60.</summary>
+    public int AutoHideSeconds { get; set; } = 5;
     /// <summary>Size of the island, 80…130 %.</summary>
     public int IslandScale { get; set; } = 100;
     /// <summary>Programs (exe names without .exe) in front of which the island hides.</summary>

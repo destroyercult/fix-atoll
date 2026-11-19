@@ -174,6 +174,9 @@ public partial class MainWindow
         GameStatsSwitch.IsChecked = _settings.GameStats;
         LockSwitch.IsChecked = _settings.LockPosition;
         AutoHideSwitch.IsChecked = _settings.AutoHide;
+        AutoHideSlider.Value = Math.Clamp(_settings.AutoHideSeconds, 2, 60);
+        AutoHideValue.Text = L.F("{0} с", Math.Clamp(_settings.AutoHideSeconds, 2, 60));
+        AutoHideRow.Visibility = _settings.AutoHide ? Visibility.Visible : Visibility.Collapsed;
         SmartSwitch.IsChecked = _settings.SmartIsland;
         FillHideAppPicker();
         CapsSwitch.IsChecked = _settings.ShowCapsLock;
@@ -298,6 +301,7 @@ public partial class MainWindow
         _settings.GameStats = GameStatsSwitch.IsChecked == true;
         _settings.LockPosition = LockSwitch.IsChecked == true;
         _settings.AutoHide = AutoHideSwitch.IsChecked == true;
+        AutoHideRow.Visibility = _settings.AutoHide ? Visibility.Visible : Visibility.Collapsed;
         _settings.SmartIsland = SmartSwitch.IsChecked == true;
         _settings.ShowCapsLock = CapsSwitch.IsChecked == true;
         _settings.ShowKeyboardLayout = LayoutSwitch.IsChecked == true;
@@ -373,6 +377,14 @@ public partial class MainWindow
         ScaleValue.Text = $"{_settings.IslandScale}%";
         _settings.Save();
         ApplyIslandScale();
+    }
+
+    private void AutoHideSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        if (_settingsLoading || !IsLoaded) return;
+        _settings.AutoHideSeconds = (int)Math.Round(AutoHideSlider.Value);
+        AutoHideValue.Text = L.F("{0} с", _settings.AutoHideSeconds);
+        _settings.Save();
     }
 
     private void Lite_Click(object sender, RoutedEventArgs e)

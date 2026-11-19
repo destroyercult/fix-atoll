@@ -720,5 +720,10 @@
  "ГОЛОСОВОЙ АССИСТЕНТ · GEMINI LIVE": "VOICE ASSISTANT · GEMINI LIVE",
  "API-ключ Gemini": "Gemini API key",
  "Если поле пустое, используется GEMINI_API_KEY.": "If empty, GEMINI_API_KEY is used.",
- "Громкость ИИ-ассистента": "AI assistant volume"
+ "Громкость ИИ-ассистента": "AI assistant volume",
+ "Прятать остров автоматически": "Hide the island automatically",
+ "Остров сам уезжает вверх, когда курсор далеко от него и ничего не происходит. Вернуть: подведите курсор к верхнему краю экрана или нажмите на полоску.": "The island slides up by itself when the cursor is far from it and nothing is going on. Bring it back: move the cursor to the top edge of the screen or click the little bar. A notice brings it out too.",
+ "Прятать через": "Hide after",
+ "{0} с": "{0} s",
+ "Прошлый запуск не удался — эффекты выключены. Вернуть: Настройки → Поведение.": "The last start did not finish — effects are off. To undo: Settings → Behavior."
 }

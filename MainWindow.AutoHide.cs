@@ -5,12 +5,12 @@ namespace DynamicIsland;
 
 /// <summary>
 /// Auto-hide: with the switch on (Settings → Behavior), the island folds away by itself — the same movement as the
-/// "hide" arrow — once the cursor has stayed away from it for a few seconds and nothing is going on. The cursor
-/// touching the top edge of the screen where the island was brings it back (the little bar can also be clicked).
+/// "hide" arrow — once the cursor has stayed away from it for a few seconds (Settings: 2…60) and nothing is going on.
+/// The cursor touching the top edge of the screen where the island was brings it back (the little bar can also be
+/// clicked), and so does any notice (ShowToast).
 /// </summary>
 public partial class MainWindow
 {
-    private const double AutoHideAfterSeconds = 5;
     private bool _autoHidden;                       // folded away by this switch, not by the arrow
     private DateTime _autoHideIdleSince = DateTime.UtcNow;
 
@@ -55,7 +55,7 @@ public partial class MainWindow
         catch { near = true; }
 
         if (busy || near || Island.IsMouseOver) { _autoHideIdleSince = now; return; }
-        if ((now - _autoHideIdleSince).TotalSeconds < AutoHideAfterSeconds) return;
+        if ((now - _autoHideIdleSince).TotalSeconds < Math.Clamp(_settings.AutoHideSeconds, 2, 60)) return;
 
         _autoHidden = true;
         _autoHideIdleSince = now;
