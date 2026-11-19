@@ -1159,6 +1159,7 @@
                       <ComboBox x:Name="HideAppPicker" Style="{StaticResource SoftCombo}"/>
                     </DockPanel>
                     <CheckBox x:Name="LockSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Закрепить на месте (не перетаскивать)"/>
+                    <CheckBox x:Name="AutoHideSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" ToolTip="Остров сам уезжает вверх, когда курсор далеко от него и ничего не происходит. Вернуть: подведите курсор к верхнему краю экрана или нажмите на полоску." Content="Прятать остров автоматически"/>
                     <CheckBox x:Name="CapsSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Показывать Caps Lock"/>
                     <CheckBox x:Name="LayoutSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Показывать смену раскладки"/>
                     <CheckBox x:Name="LevelsSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Показывать громкость и яркость рядом с островом"/>

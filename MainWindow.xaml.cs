@@ -1764,17 +1764,21 @@ public partial class MainWindow : Window
         if (_hidden) ShowIsland(); else HideIsland(animate: true);
     }
 
-    private void HideIsland(bool animate)
+    /// <param name="auto">Folded away by the auto-hide switch: not remembered as "hidden", so the island is back after a restart.</param>
+    private void HideIsland(bool animate, bool auto = false)
     {
         if (_hidden && animate) return;
         if (_mode != Mode.Compact && _mode != Mode.Claude) SetMode(Mode.Compact);
         _hidden = true;
         UpdateAuraVisibility();
         _posActive = false;
-        _settings.Hidden = true;
-        if (Top > SystemParameters.VirtualScreenTop + 1) _settings.Top = Top; // remember where it was
-        _settings.CenterX = Left + Width / 2;
-        _settings.Save();
+        if (!auto)
+        {
+            _settings.Hidden = true;
+            if (Top > SystemParameters.VirtualScreenTop + 1) _settings.Top = Top; // remember where it was
+            _settings.CenterX = Left + Width / 2;
+            _settings.Save();
+        }
 
         void Finish()
         {
@@ -1947,6 +1951,7 @@ public partial class MainWindow : Window
         WatchBrightness();
         UpdateLyricLine();
         UpdateLive();
+        WatchAutoHide();
         if (_tickCount % 4 == 0)
         {
             SlowTick();

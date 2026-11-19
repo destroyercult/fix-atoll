@@ -173,6 +173,7 @@ public partial class MainWindow
         HandDrawnSwitch.IsChecked = _settings.HandDrawn;
         GameStatsSwitch.IsChecked = _settings.GameStats;
         LockSwitch.IsChecked = _settings.LockPosition;
+        AutoHideSwitch.IsChecked = _settings.AutoHide;
         SmartSwitch.IsChecked = _settings.SmartIsland;
         FillHideAppPicker();
         CapsSwitch.IsChecked = _settings.ShowCapsLock;
@@ -296,6 +297,7 @@ public partial class MainWindow
         _settings.HideInFullscreen = FullscreenSwitch.IsChecked == true;
         _settings.GameStats = GameStatsSwitch.IsChecked == true;
         _settings.LockPosition = LockSwitch.IsChecked == true;
+        _settings.AutoHide = AutoHideSwitch.IsChecked == true;
         _settings.SmartIsland = SmartSwitch.IsChecked == true;
         _settings.ShowCapsLock = CapsSwitch.IsChecked == true;
         _settings.ShowKeyboardLayout = LayoutSwitch.IsChecked == true;

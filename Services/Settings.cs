@@ -118,6 +118,8 @@ public sealed class Settings
     public bool ShowKeyboardLayout { get; set; } = true;
     /// <summary>The island stays where it is: no dragging, no swipe-away.</summary>
     public bool LockPosition { get; set; }
+    /// <summary>The island folds away by itself (like the "hide" arrow) while the cursor is far from it and nothing is going on; the cursor at the top edge brings it back.</summary>
+    public bool AutoHide { get; set; }
     /// <summary>Size of the island, 80…130 %.</summary>
     public int IslandScale { get; set; } = 100;
     /// <summary>Programs (exe names without .exe) in front of which the island hides.</summary>
