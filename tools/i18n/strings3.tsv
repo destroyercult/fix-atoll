@@ -1,0 +1,446 @@
+ru	en	uk	es	de	pt	zh
+Спрятать (смахнуть вверх)	Hide (swipe up)	Сховати (змахнути вгору)	Ocultar (desliza hacia arriba)	Ausblenden (nach oben wischen)	Ocultar (deslize para cima)	隐藏（向上滑动）
+В терминале	In terminal	У терміналі	En la terminal	Im Terminal	No terminal	在终端中
+Запретить	Deny	Заборонити	Denegar	Ablehnen	Negar	拒绝
+Разрешить	Allow	Дозволити	Permitir	Erlauben	Permitir	允许
+Приложение, 2+2, таймер 10, напомни…, > команда	App, 2+2, timer 10, remind…, > command	Застосунок, 2+2, таймер 10, нагадай…, > команда	App, 2+2, temporizador 10, recuérdame…, > comando	App, 2+2, timer 10, erinnere…, > Befehl	App, 2+2, temporizador 10, lembre…, > comando	应用、2+2、计时 10、提醒…、> 命令
+Поделиться, сжать в ZIP, конвертировать картинку	Share, ZIP it, convert an image	Поділитися, стиснути в ZIP, конвертувати зображення	Compartir, comprimir en ZIP, convertir una imagen	Teilen, als ZIP packen, Bild konvertieren	Compartilhar, compactar em ZIP, converter imagem	分享、压缩为 ZIP、转换图片
+Главная	Home	Головна	Inicio	Start	Início	主页
+Чат	Chat	Чат	Chat	Chat	Chat	聊天
+Таймер	Timer	Таймер	Temporizador	Timer	Temporizador	计时器
+Буфер	Clipboard	Буфер	Portapapeles	Zwischenablage	Transferência	剪贴板
+Нажми на меня	Click me	Натисни на мене	Haz clic en mí	Klick mich	Clique em mim	点我
+Спрятать (или смахните вверх)	Hide (or swipe up)	Сховати (або змахніть угору)	Ocultar (o desliza hacia arriba)	Ausblenden (oder nach oben wischen)	Ocultar (ou deslize para cima)	隐藏（或向上滑动）
+Город	City	Місто	Ciudad	Stadt	Cidade	城市
+Обновить	Refresh	Оновити	Actualizar	Aktualisieren	Atualizar	刷新
+СЕЙЧАС	NOW	ЗАРАЗ	AHORA	JETZT	AGORA	当前
+ВЕТЕР	WIND	ВІТЕР	VIENTO	WIND	VENTO	风
+ВЛАЖНОСТЬ	HUMIDITY	ВОЛОГІСТЬ	HUMEDAD	LUFTFEUCHTE	UMIDADE	湿度
+ДАВЛЕНИЕ	PRESSURE	ТИСК	PRESIÓN	LUFTDRUCK	PRESSÃO	气压
+мм рт. ст.	mmHg	мм рт. ст.	mmHg	mmHg	mmHg	毫米汞柱
+СОЛНЦЕ	SUN	СОНЦЕ	SOL	SONNE	SOL	日出日落
+УФ-ИНДЕКС	UV INDEX	УФ-ІНДЕКС	ÍNDICE UV	UV-INDEX	ÍNDICE UV	紫外线指数
+ОСАДКИ	PRECIPITATION	ОПАДИ	PRECIPITACIÓN	NIEDERSCHLAG	PRECIPITAÇÃO	降水
+ПО ЧАСАМ	HOURLY	ПОГОДИННО	POR HORAS	STÜNDLICH	POR HORA	逐小时
+Открыть в браузере	Open in browser	Відкрити в браузері	Abrir en el navegador	Im Browser öffnen	Abrir no navegador	在浏览器中打开
+Загружаю чат…	Loading chat…	Завантажую чат…	Cargando el chat…	Lade Chat…	Carregando o chat…	正在加载聊天…
+Помодоро	Pomodoro	Помодоро	Pomodoro	Pomodoro	Pomodoro	番茄钟
+Секундомер	Stopwatch	Секундомір	Cronómetro	Stoppuhr	Cronômetro	秒表
+мин	min	хв	min	Min.	min	分钟
+«Не беспокоить» во время работы	Do Not Disturb while focusing	«Не турбувати» під час роботи	No molestar mientras trabajas	„Nicht stören“ während der Arbeit	Não perturbe durante o foco	专注时开启勿扰
+Сброс	Reset	Скинути	Restablecer	Zurücksetzen	Redefinir	重置
+История	History	Історія	Historial	Verlauf	Histórico	历史
+Полка	Shelf	Полиця	Estantería	Regal	Prateleira	暂存架
+Текст	Text	Текст	Texto	Text	Texto	文字
+Очистить	Clear	Очистити	Borrar	Leeren	Limpar	清空
+БЛИЖАЙШЕЕ	UP NEXT	НАЙБЛИЖЧЕ	PRÓXIMO	ALS NÄCHSTES	PRÓXIMOS	即将到来
+НАПОМНИТЬ	REMIND ME	НАГАДАТИ	RECORDAR	ERINNERN	LEMBRAR	提醒我
+Добавить	Add	Додати	Añadir	Hinzufügen	Adicionar	添加
+Время: 18:30, завтра 9:00, через 20 мин, 15.11 14:00	Time: 18:30, tomorrow 9:00, in 20 min, 15.11 14:00	Час: 18:30, завтра 9:00, через 20 хв, 15.11 14:00	Hora: 18:30, mañana 9:00, en 20 min, 15.11 14:00	Zeit: 18:30, morgen 9:00, in 20 min, 15.11 14:00	Horário: 18:30, amanhã 9:00, em 20 min, 15.11 14:00	时间：18:30、明天 9:00、20分钟后、15.11 14:00
+GOOGLE / OUTLOOK / ЛЮБОЙ КАЛЕНДАРЬ (ICS)	GOOGLE / OUTLOOK / ANY CALENDAR (ICS)	GOOGLE / OUTLOOK / БУДЬ-ЯКИЙ КАЛЕНДАР (ICS)	GOOGLE / OUTLOOK / CUALQUIER CALENDARIO (ICS)	GOOGLE / OUTLOOK / BELIEBIGER KALENDER (ICS)	GOOGLE / OUTLOOK / QUALQUER CALENDÁRIO (ICS)	GOOGLE / OUTLOOK / 任意日历 (ICS)
+ПРОЦЕССОР	CPU	ПРОЦЕСОР	CPU	PROZESSOR	CPU	处理器
+ПАМЯТЬ	MEMORY	ПАМ'ЯТЬ	MEMORIA	ARBEITSSPEICHER	MEMÓRIA	内存
+Не беспокоить	Do Not Disturb	Не турбувати	No molestar	Nicht stören	Não perturbe	勿扰
+30 мин	30 min	30 хв	30 min	30 Min.	30 min	30 分钟
+2 ч	2 h	2 год	2 h	2 Std.	2 h	2 小时
+Выключить	Turn off	Вимкнути	Desactivar	Ausschalten	Desativar	关闭
+МИКРОФОН И КАМЕРА СЕЙЧАС	MICROPHONE AND CAMERA NOW	МІКРОФОН І КАМЕРА ЗАРАЗ	MICRÓFONO Y CÁMARA AHORA	MIKROFON UND KAMERA JETZT	MICROFONE E CÂMERA AGORA	当前麦克风和摄像头
+ЗАРЯД УСТРОЙСТВ	DEVICE BATTERY	ЗАРЯД ПРИСТРОЇВ	BATERÍA DE DISPOSITIVOS	AKKUSTAND DER GERÄTE	BATERIA DOS DISPOSITIVOS	设备电量
+Выйти	Quit	Вийти	Salir	Beenden	Sair	退出
+Внешний вид	Appearance	Вигляд	Apariencia	Aussehen	Aparência	外观
+СТИЛЬ	STYLE	СТИЛЬ	ESTILO	STIL	ESTILO	样式
+У края	Docked	Біля краю	Anclada	Am Rand	Na borda	贴边
+Вырастает из края экрана	Grows out of the screen edge	Виростає з краю екрана	Sale del borde de la pantalla	Wächst aus dem Bildschirmrand	Surge da borda da tela	从屏幕边缘长出
+Плавающий	Floating	Плаваючий	Flotante	Schwebend	Flutuante	悬浮
+Пилюля чуть ниже края	A pill just below the edge	Пігулка трохи нижче краю	Una píldora justo debajo del borde	Eine Pille knapp unter dem Rand	Uma pílula logo abaixo da borda	边缘下方的胶囊
+Тёмная тема	Dark theme	Темна тема	Tema oscuro	Dunkles Design	Tema escuro	深色主题
+Матовое стекло	Frosted glass	Матове скло	Vidrio esmerilado	Milchglas	Vidro fosco	磨砂玻璃
+Тон стекла	Glass tint	Тон скла	Tono del vidrio	Glastönung	Tom do vidro	玻璃色调
+Прозрачный низ	See-through bottom	Прозорий низ	Parte inferior transparente	Transparenter unterer Teil	Parte de baixo transparente	底部透明
+ПЕРЕЛИВАНИЕ В ПОКОЕ	IDLE GLOW	ПЕРЕЛИВИ В СПОКОЇ	BRILLO EN REPOSO	LEUCHTEN IM RUHEZUSTAND	BRILHO EM REPOUSO	待机光效
+Пружинка	Spring bounce	Пружинка	Rebote	Federeffekt	Efeito mola	弹性动画
+Скорость анимации	Animation speed	Швидкість анімації	Velocidad de animación	Animationstempo	Velocidade da animação	动画速度
+Обычная	Normal	Звичайна	Normal	Normal	Normal	正常
+Быстрая	Fast	Швидка	Rápida	Schnell	Rápida	快速
+Иконки страниц	Page icons	Іконки сторінок	Iconos de página	Seitensymbole	Ícones das páginas	页面图标
+При наведении	On hover	При наведенні	Al pasar el ratón	Beim Überfahren	Ao passar o mouse	悬停时
+Всегда	Always	Завжди	Siempre	Immer	Sempre	始终
+Живой отклик	Live response	Живий відгук	Respuesta viva	Lebendige Reaktion	Resposta viva	灵动反馈
+Живые волны	Liquid waves	Живі хвилі	Ondas vivas	Lebendige Wellen	Ondas vivas	液态波浪
+ЦВЕТ ОСТРОВА	ISLAND COLOR	КОЛІР ОСТРОВА	COLOR DE LA ISLA	INSELFARBE	COR DA ILHA	灵动岛颜色
+Применить	Apply	Застосувати	Aplicar	Anwenden	Aplicar	应用
+Персонаж	Character	Персонаж	Personaje	Figur	Personagem	角色
+Нарисовано от руки (покадрово)	Hand-drawn (frame by frame)	Намальовано від руки (покадрово)	Dibujado a mano (fotograma a fotograma)	Handgezeichnet (Bild für Bild)	Desenhado à mão (quadro a quadro)	手绘风格（逐帧）
+Оранжевая подсветка Claude	Claude's orange glow	Помаранчеве підсвічування Claude	Brillo naranja de Claude	Oranges Leuchten von Claude	Brilho laranja do Claude	Claude 橙色光效
+Быстрые действия	Quick actions	Швидкі дії	Acciones rápidas	Schnellaktionen	Ações rápidas	快捷操作
+Кнопки действий	Action buttons	Кнопки дій	Botones de acción	Aktionstasten	Botões de ação	操作按钮
+Поведение	Behavior	Поведінка	Comportamiento	Verhalten	Comportamento	行为
+Язык интерфейса	Interface language	Мова інтерфейсу	Idioma de la interfaz	Sprache der Oberfläche	Idioma da interface	界面语言
+Раскрывать при наведении	Open on hover	Розкривати при наведенні	Abrir al pasar el ratón	Beim Überfahren öffnen	Abrir ao passar o mouse	悬停时展开
+Прятать в играх и полноэкранном режиме	Hide in games and full screen	Ховати в іграх і повноекранному режимі	Ocultar en juegos y pantalla completa	In Spielen und im Vollbild ausblenden	Ocultar em jogos e tela cheia	在游戏和全屏时隐藏
+В играх показывать CPU / GPU / RAM вместо полного скрытия	In games, show CPU / GPU / RAM instead of hiding completely	В іграх показувати CPU / GPU / RAM замість повного приховування	En juegos, mostrar CPU / GPU / RAM en vez de ocultarse	In Spielen CPU / GPU / RAM anzeigen statt ganz auszublenden	Em jogos, mostrar CPU / GPU / RAM em vez de ocultar	游戏中显示 CPU / GPU / 内存，而不是完全隐藏
+Слова песни прямо в острове (караоке)	Lyrics right in the island (karaoke)	Слова пісні прямо в острові (караоке)	Letra dentro de la isla (karaoke)	Songtext direkt in der Insel (Karaoke)	Letra dentro da ilha (karaokê)	在灵动岛内显示歌词（卡拉 OK）
+Сообщения Telegram, Discord, Viber… на острове	Telegram, Discord, Viber… messages on the island	Повідомлення Telegram, Discord, Viber… на острові	Mensajes de Telegram, Discord, Viber… en la isla	Nachrichten von Telegram, Discord, Viber… auf der Insel	Mensagens do Telegram, Discord, Viber… na ilha	在灵动岛显示 Telegram、Discord、Viber… 消息
+Уведомления всех приложений, не только мессенджеров	Notifications from all apps, not just messengers	Сповіщення всіх застосунків, не лише месенджерів	Notificaciones de todas las apps, no solo de mensajería	Benachrichtigungen aller Apps, nicht nur Messenger	Notificações de todos os apps, não só mensageiros	显示所有应用的通知，而不仅是聊天软件
+Запускать вместе с Windows	Start with Windows	Запускати разом із Windows	Iniciar con Windows	Mit Windows starten	Iniciar com o Windows	开机自动启动
+Вернуть остров в центр	Move the island back to the center	Повернути острів у центр	Volver a centrar la isla	Insel wieder zentrieren	Voltar a ilha para o centro	将灵动岛移回中间
+Действия	Actions	Дії	Acciones	Aktionen	Ações	操作
+Команда для кнопки «Команда»	Command for the “Command” button	Команда для кнопки «Команда»	Comando para el botón «Comando»	Befehl für die Taste „Befehl“	Comando para o botão “Comando”	“命令”按钮执行的命令
+Переводить на язык	Translate into	Перекладати мовою	Traducir al idioma	Übersetzen in	Traduzir para	翻译为
+Запись экрана: звук компьютера	Screen recording: computer sound	Запис екрана: звук комп'ютера	Grabación: sonido del equipo	Bildschirmaufnahme: PC-Ton	Gravação da tela: som do computador	屏幕录制：系统声音
+Запись экрана: микрофон	Screen recording: microphone	Запис екрана: мікрофон	Grabación: micrófono	Bildschirmaufnahme: Mikrofon	Gravação da tela: microfone	屏幕录制：麦克风
+Ctrl+Alt+S — скриншот области · Ctrl+Alt+R — запись · Ctrl+Alt+I — показать/спрятать · Ctrl+Alt+Space — командная строка	Ctrl+Alt+S — region screenshot · Ctrl+Alt+R — record · Ctrl+Alt+I — show/hide · Ctrl+Alt+Space — command bar	Ctrl+Alt+S — знімок області · Ctrl+Alt+R — запис · Ctrl+Alt+I — показати/сховати · Ctrl+Alt+Space — командний рядок	Ctrl+Alt+S: captura de región · Ctrl+Alt+R: grabar · Ctrl+Alt+I: mostrar/ocultar · Ctrl+Alt+Espacio: barra de comandos	Strg+Alt+S – Bereichs-Screenshot · Strg+Alt+R – Aufnahme · Strg+Alt+I – anzeigen/ausblenden · Strg+Alt+Leertaste – Befehlsleiste	Ctrl+Alt+S — captura de região · Ctrl+Alt+R — gravar · Ctrl+Alt+I — mostrar/ocultar · Ctrl+Alt+Espaço — barra de comandos	Ctrl+Alt+S — 区域截图 · Ctrl+Alt+R — 录制 · Ctrl+Alt+I — 显示/隐藏 · Ctrl+Alt+Space — 命令栏
+Скриншот — Atoll	Screenshot — Atoll	Знімок — Atoll	Captura — Atoll	Screenshot — Atoll	Captura — Atoll	截图 — Atoll
+Красный	Red	Червоний	Rojo	Rot	Vermelho	红色
+Жёлтый	Yellow	Жовтий	Amarillo	Gelb	Amarelo	黄色
+Зелёный	Green	Зелений	Verde	Grün	Verde	绿色
+Синий	Blue	Синій	Azul	Blau	Azul	蓝色
+Белый	White	Білий	Blanco	Weiß	Branco	白色
+Ручка	Pen	Ручка	Bolígrafo	Stift	Caneta	画笔
+Маркер	Highlighter	Маркер	Rotulador	Textmarker	Marca-texto	荧光笔
+Ластик	Eraser	Гумка	Borrador	Radierer	Borracha	橡皮擦
+Отменить (Ctrl+Z)	Undo (Ctrl+Z)	Скасувати (Ctrl+Z)	Deshacer (Ctrl+Z)	Rückgängig (Strg+Z)	Desfazer (Ctrl+Z)	撤销 (Ctrl+Z)
+Копировать (Ctrl+C)	Copy (Ctrl+C)	Копіювати (Ctrl+C)	Copiar (Ctrl+C)	Kopieren (Strg+C)	Copiar (Ctrl+C)	复制 (Ctrl+C)
+Сохранить (Ctrl+S)	Save (Ctrl+S)	Зберегти (Ctrl+S)	Guardar (Ctrl+S)	Speichern (Strg+S)	Salvar (Ctrl+S)	保存 (Ctrl+S)
+Закрыть (Esc)	Close (Esc)	Закрити (Esc)	Cerrar (Esc)	Schließen (Esc)	Fechar (Esc)	关闭 (Esc)
+Открыть ссылку	Open link	Відкрити посилання	Abrir enlace	Link öffnen	Abrir link	打开链接
+Выровнять по центру	Align to center	Вирівняти по центру	Centrar	Zentrieren	Centralizar	居中对齐
+Поставить остров ровно по центру вверху экрана	Put the island exactly at the top center of the screen	Поставити острів рівно по центру вгорі екрана	Colocar la isla justo en el centro superior de la pantalla	Insel genau oben mittig platzieren	Colocar a ilha exatamente no centro superior da tela	把灵动岛放到屏幕顶部正中
+Удалить Atoll	Uninstall Atoll	Видалити Atoll	Desinstalar Atoll	Atoll deinstallieren	Desinstalar o Atoll	卸载 Atoll
+Удалить приложение, автозапуск и хуки Claude Code	Remove the app, autostart and Claude Code hooks	Видалити застосунок, автозапуск і хуки Claude Code	Quitar la app, el inicio automático y los hooks de Claude Code	App, Autostart und Claude-Code-Hooks entfernen	Remover o app, a inicialização automática e os hooks do Claude Code	移除应用、开机启动和 Claude Code 钩子
+Удалить Atoll с этого компьютера?	Uninstall Atoll from this computer?	Видалити Atoll з цього комп'ютера?	¿Desinstalar Atoll de este equipo?	Atoll von diesem Computer entfernen?	Desinstalar o Atoll deste computador?	要从这台电脑上卸载 Atoll 吗？
+Удалить также настройки, заметки и вход в чаты?	Also delete settings, notes and chat logins?	Видалити також налаштування, нотатки та вхід у чати?	¿Eliminar también los ajustes, las notas y las sesiones de chat?	Auch Einstellungen, Notizen und Chat-Anmeldungen löschen?	Excluir também configurações, notas e logins dos chats?	同时删除设置、笔记和聊天登录信息吗？
+Обновления	Updates	Оновлення	Actualizaciones	Updates	Atualizações	更新
+Проверить сейчас	Check now	Перевірити зараз	Buscar ahora	Jetzt prüfen	Verificar agora	立即检查
+Проверять обновления автоматически	Check for updates automatically	Перевіряти оновлення автоматично	Buscar actualizaciones automáticamente	Automatisch nach Updates suchen	Verificar atualizações automaticamente	自动检查更新
+Проверяю…	Checking…	Перевіряю…	Comprobando…	Prüfe…	Verificando…	正在检查…
+Доступна версия {0}	Version {0} is available	Доступна версія {0}	Versión {0} disponible	Version {0} ist verfügbar	Versão {0} disponível	有新版本 {0}
+Нажмите, чтобы обновить	Click to update	Натисніть, щоб оновити	Haz clic para actualizar	Zum Aktualisieren klicken	Clique para atualizar	点击更新
+Нажмите, чтобы скачать	Click to download	Натисніть, щоб завантажити	Haz clic para descargar	Zum Herunterladen klicken	Clique para baixar	点击下载
+Нет связи с GitHub	Can't reach GitHub	Немає зв'язку з GitHub	No se puede conectar con GitHub	GitHub nicht erreichbar	Sem conexão com o GitHub	无法连接 GitHub
+Установлена последняя версия · {0}	You're up to date · {0}	Встановлено останню версію · {0}	Tienes la última versión · {0}	Aktuellste Version · {0}	Você está na versão mais recente · {0}	已是最新版本 · {0}
+Доступна версия {0} (у вас {1})	Version {0} is available (you have {1})	Доступна версія {0} (у вас {1})	Versión {0} disponible (tienes la {1})	Version {0} verfügbar (installiert: {1})	Versão {0} disponível (você tem a {1})	有新版本 {0}（当前 {1}）
+Обновить до {0}	Update to {0}	Оновити до {0}	Actualizar a {0}	Auf {0} aktualisieren	Atualizar para {0}	更新到 {0}
+Скачать с GitHub	Download from GitHub	Завантажити з GitHub	Descargar de GitHub	Von GitHub herunterladen	Baixar do GitHub	从 GitHub 下载
+Скачиваю обновление… {0:0}%	Downloading the update… {0:0}%	Завантажую оновлення… {0:0}%	Descargando la actualización… {0:0}%	Lade Update… {0:0}%	Baixando a atualização… {0:0}%	正在下载更新… {0:0}%
+Скачиваю Atoll {0}…	Downloading Atoll {0}…	Завантажую Atoll {0}…	Descargando Atoll {0}…	Lade Atoll {0}…	Baixando o Atoll {0}…	正在下载 Atoll {0}…
+Устанавливаю…	Installing…	Встановлюю…	Instalando…	Installiere…	Instalando…	正在安装…
+Проверить обновления	Check for updates	Перевірити оновлення	Buscar actualizaciones	Nach Updates suchen	Verificar atualizações	检查更新
+ПУНКТ УПРАВЛЕНИЯ	CONTROL CENTER	ПУНКТ КЕРУВАННЯ	CENTRO DE CONTROL	KONTROLLZENTRUM	CENTRAL DE CONTROLE	控制中心
+Режим полёта	Airplane mode	Режим польоту	Modo avión	Flugmodus	Modo avião	飞行模式
+Чистый стол	Clean desktop	Чистий стіл	Escritorio limpio	Leerer Desktop	Área limpa	简洁桌面
+Док	Dock	Док	Dock	Dock	Dock	程序坞
+Блокировка	Lock	Блокування	Bloquear	Sperren	Bloquear	锁定
+Сон	Sleep	Сон	Suspender	Energie sparen	Suspender	睡眠
+Перезагрузка	Restart	Перезавантаження	Reiniciar	Neu starten	Reiniciar	重启
+Выключение	Shut down	Вимкнення	Apagar	Herunterfahren	Desligar	关机
+Перезагрузить компьютер?	Restart the computer?	Перезавантажити комп'ютер?	¿Reiniciar el equipo?	Computer neu starten?	Reiniciar o computador?	要重启电脑吗？
+Выключить компьютер?	Shut down the computer?	Вимкнути комп'ютер?	¿Apagar el equipo?	Computer herunterfahren?	Desligar o computador?	要关闭电脑吗？
+нет адаптера	no adapter	немає адаптера	sin adaptador	kein Adapter	sem adaptador	无适配器
+не подключено	not connected	не підключено	sin conexión	nicht verbunden	não conectado	未连接
+выкл.	off	вимк.	apagado	aus	desligado	关
+вкл.	on	увімк.	encendido	an	ligado	开
+настроить	set up	налаштувати	configurar	einrichten	configurar	设置
+Батарея {0}% · заряжается	Battery {0}% · charging	Батарея {0}% · заряджається	Batería {0}% · cargando	Akku {0}% · lädt	Bateria {0}% · carregando	电池 {0}% · 充电中
+Батарея {0}%	Battery {0}%	Батарея {0}%	Batería {0}%	Akku {0}%	Bateria {0}%	电池 {0}%
+Нет адаптера	No adapter	Немає адаптера	Sin adaptador	Kein Adapter	Sem adaptador	无适配器
+Windows не разрешил переключить	Windows didn't allow the switch	Windows не дозволив перемкнути	Windows no permitió el cambio	Windows hat das Umschalten nicht erlaubt	O Windows não permitiu a troca	Windows 不允许切换
+Откройте «Параметры → Конфиденциальность → Радио»	Open Settings → Privacy → Radios	Відкрийте «Параметри → Конфіденційність → Радіо»	Abre Configuración → Privacidad → Radios	Öffne Einstellungen → Datenschutz → Funkempfang	Abra Configurações → Privacidade → Rádios	打开“设置 → 隐私 → 无线电收发器”
+подключаю…	connecting…	підключаю…	conectando…	verbinde…	conectando…	正在连接…
+VPN не подключился	VPN didn't connect	VPN не підключився	La VPN no se conectó	VPN nicht verbunden	A VPN não conectou	VPN 未连接
+Откройте настройки VPN, чтобы ввести данные	Open VPN settings to enter your details	Відкрийте налаштування VPN, щоб ввести дані	Abre la configuración de VPN para introducir tus datos	Öffne die VPN-Einstellungen, um deine Daten einzugeben	Abra as configurações de VPN para inserir seus dados	打开 VPN 设置以输入信息
+Чистый рабочий стол включён	Clean desktop is on	Чистий робочий стіл увімкнено	Escritorio limpio activado	Leerer Desktop ist an	Área de trabalho limpa ativada	简洁桌面已开启
+Панель задач и значки вернулись	Taskbar and icons are back	Панель завдань і значки повернулися	La barra de tareas y los iconos han vuelto	Taskleiste und Symbole sind zurück	A barra de tarefas e os ícones voltaram	任务栏和图标已恢复
+Перетащите сюда приложения	Drop apps here	Перетягніть сюди застосунки	Arrastra aquí tus apps	Apps hierher ziehen	Arraste apps para cá	把应用拖到这里
+Открыть	Open	Відкрити	Abrir	Öffnen	Abrir	打开
+Убрать из дока	Remove from dock	Прибрати з доку	Quitar del dock	Aus dem Dock entfernen	Remover do dock	从程序坞移除
+Док с приложениями внизу экрана	Dock with apps at the bottom of the screen	Док із застосунками внизу екрана	Dock con apps en la parte inferior	Dock mit Apps am unteren Bildschirmrand	Dock com apps na parte inferior da tela	屏幕底部的应用程序坞
+Чистый рабочий стол: прятать панель задач и значки	Clean desktop: hide the taskbar and icons	Чистий робочий стіл: ховати панель завдань і значки	Escritorio limpio: ocultar barra de tareas e iconos	Leerer Desktop: Taskleiste und Symbole ausblenden	Área limpa: ocultar barra de tarefas e ícones	简洁桌面：隐藏任务栏和图标
+Перетащите сюда приложения — они откроются в один клик	Drop apps here — they open in one click	Перетягніть сюди застосунки — вони відкриватимуться в один клік	Arrastra aquí tus apps: se abren con un clic	Apps hierher ziehen – sie öffnen sich mit einem Klick	Arraste apps para cá — elas abrem com um clique	把应用拖到这里，一键打开
+Приложения	Apps	Застосунки	Apps	Apps	Apps	应用
+Убрать из приложений	Remove from apps	Прибрати із застосунків	Quitar de las apps	Aus den Apps entfernen	Remover dos apps	从应用中移除
+Значки рабочего стола вернулись	Desktop icons are back	Значки робочого столу повернулися	Los iconos del escritorio han vuelto	Desktopsymbole sind zurück	Os ícones da área de trabalho voltaram	桌面图标已恢复
+Чистый рабочий стол: прятать значки	Clean desktop: hide the desktop icons	Чистий робочий стіл: ховати значки	Escritorio limpio: ocultar los iconos	Leerer Desktop: Symbole ausblenden	Área limpa: ocultar os ícones	简洁桌面：隐藏桌面图标
+Добавьте приложения кнопкой «+» — они будут открываться в один клик	Add apps with the “+” button — they open in one click	Додайте застосунки кнопкою «+» — вони відкриватимуться в один клік	Añade apps con el botón «+»: se abren con un clic	Füge Apps mit „+“ hinzu – sie öffnen sich mit einem Klick	Adicione apps com o botão “+” — eles abrem com um clique	点击“+”添加应用，一键即可打开
+Добавить приложение	Add an app	Додати застосунок	Añadir una app	App hinzufügen	Adicionar um app	添加应用
+Название приложения…	App name…	Назва застосунку…	Nombre de la app…	App-Name…	Nome do app…	应用名称…
+Ничего не найдено	Nothing found	Нічого не знайдено	No se encontró nada	Nichts gefunden	Nada encontrado	未找到
+В играх показывать FPS и нагрузку вместо полного скрытия	In games, show FPS and load instead of hiding	В іграх показувати FPS і навантаження замість повного приховування	En juegos, mostrar FPS y carga en vez de ocultarse	In Spielen FPS und Auslastung zeigen statt auszublenden	Em jogos, mostrar FPS e carga em vez de ocultar	游戏中显示 FPS 和负载，而不是完全隐藏
+Разрешить	Allow	Дозволити	Permitir	Erlauben	Permitir	允许
+Поверх игр в «эксклюзивном полноэкранном» режиме ничего показать нельзя — выберите «Оконный без рамки».	Nothing can be shown over games in exclusive full-screen mode — choose "Borderless window".	Поверх ігор у «ексклюзивному повноекранному» режимі нічого показати не можна — оберіть «Вікно без рамки».	No se puede mostrar nada sobre juegos en pantalla completa exclusiva: elige «Ventana sin bordes».	Über Spielen im exklusiven Vollbild kann nichts angezeigt werden – wähle „Randloses Fenster“.	Nada pode aparecer sobre jogos em tela cheia exclusiva — escolha “Janela sem bordas”.	独占全屏的游戏上无法显示任何内容，请选择“无边框窗口”。
+Счётчик FPS работает: в играх он появится в пилюле	FPS counter is ready: it shows in the pill while you play	Лічильник FPS працює: в іграх він з'явиться в пігулці	El contador de FPS está listo: aparecerá en la píldora al jugar	FPS-Zähler bereit: er erscheint beim Spielen in der Pille	Contador de FPS pronto: aparece na pílula enquanto você joga	FPS 计数器已就绪：游戏时会显示在胶囊中
+Чтобы видеть FPS в играх, нужно один раз разрешить доступ	To see FPS in games, allow access once	Щоб бачити FPS в іграх, треба один раз дозволити доступ	Para ver los FPS en juegos, permite el acceso una vez	Um FPS in Spielen zu sehen, einmal Zugriff erlauben	Para ver o FPS nos jogos, permita o acesso uma vez	要在游戏中查看 FPS，需要授权一次
+Доступ не выдан	Access not granted	Доступ не надано	Acceso no concedido	Zugriff nicht erteilt	Acesso não concedido	未授予访问权限
+Windows попросит подтверждение — нажмите «Да»	Windows will ask for confirmation — click "Yes"	Windows попросить підтвердження — натисніть «Так»	Windows pedirá confirmación: pulsa «Sí»	Windows fragt nach einer Bestätigung – klicke auf „Ja“	O Windows vai pedir confirmação — clique em “Sim”	Windows 会请求确认，请点击“是”
+Готово. Выйдите из Windows и войдите снова — после этого в играх появится FPS.	Done. Sign out of Windows and back in — after that, FPS appears in games.	Готово. Вийдіть із Windows і увійдіть знову — після цього в іграх з'явиться FPS.	Listo. Cierra sesión en Windows y vuelve a entrar: después verás los FPS en los juegos.	Fertig. Melde dich bei Windows ab und wieder an – danach erscheinen FPS in Spielen.	Pronto. Saia do Windows e entre novamente — depois disso o FPS aparece nos jogos.	完成。请注销 Windows 并重新登录，之后游戏中就会显示 FPS。
+Повтор: весь список	Repeat: whole list	Повтор: увесь список	Repetir: toda la lista	Wiederholen: ganze Liste	Repetir: lista inteira	重复：整个列表
+Повтор: этот трек	Repeat: this track	Повтор: цей трек	Repetir: esta pista	Wiederholen: dieser Titel	Repetir: esta faixa	重复：当前曲目
+Повтор выключен	Repeat off	Повтор вимкнено	Repetición desactivada	Wiederholen aus	Repetição desligada	重复已关闭
+Убрать из избранного	Remove from favourites	Прибрати з обраного	Quitar de favoritos	Aus Favoriten entfernen	Remover dos favoritos	从收藏中移除
+В избранное	Add to favourites	До обраного	Añadir a favoritos	Zu Favoriten	Adicionar aos favoritos	加入收藏
+Убрано из избранного	Removed from favourites	Прибрано з обраного	Quitado de favoritos	Aus Favoriten entfernt	Removido dos favoritos	已从收藏中移除
+Добавлено в избранное	Added to favourites	Додано до обраного	Añadido a favoritos	Zu Favoriten hinzugefügt	Adicionado aos favoritos	已加入收藏
+Нажмите ♥ под треком, и он появится здесь	Press ♥ under a track and it will appear here	Натисніть ♥ під треком, і він з’явиться тут	Pulsa ♥ bajo una pista y aparecerá aquí	Tippe unter einem Titel auf ♥, dann erscheint er hier	Toque em ♥ abaixo de uma faixa e ela aparecerá aqui	点击曲目下方的 ♥，它就会出现在这里
+Скопировать название	Copy the name	Скопіювати назву	Copiar el nombre	Namen kopieren	Copiar o nome	复制名称
+Повтор	Repeat	Повтор	Repetir	Wiederholen	Repetir	重复
+Избранное	Favourites	Обране	Favoritos	Favoriten	Favoritos	收藏
+Канал Atoll в Telegram	Atoll channel on Telegram	Канал Atoll у Telegram	Canal de Atoll en Telegram	Atoll-Kanal auf Telegram	Canal do Atoll no Telegram	Atoll 的 Telegram 频道
+Поддержать разработку Atoll	Support Atoll development	Підтримати розробку Atoll	Apoyar el desarrollo de Atoll	Die Entwicklung von Atoll unterstützen	Apoiar o desenvolvimento do Atoll	支持 Atoll 的开发
+Поддержать	Support	Підтримати	Apoyar	Unterstützen	Apoiar	支持
+Облегчённая графика для слабых ПК	Light graphics for weak PCs	Полегшена графіка для слабких ПК	Gráficos ligeros para PC modestos	Leichte Grafik für schwache PCs	Gráficos leves para PCs fracos	适合低配电脑的轻量图形
+Без стекла, свечения и эффектов: заметно меньше нагрузка	No glass, glow or effects: much lower load	Без скла, світіння та ефектів: помітно менше навантаження	Sin cristal, brillo ni efectos: mucha menos carga	Ohne Glas, Leuchten und Effekte: deutlich weniger Last	Sem vidro, brilho ou efeitos: carga bem menor	无毛玻璃、光晕和特效：负载明显降低
+Загрузка заблокирована	Download blocked	Завантаження заблоковано	Descarga bloqueada	Download blockiert	Download bloqueado	下载已阻止
+Чат пытался скачать «{0}» — программы из чата не скачиваются	The chat tried to download "{0}" — programs are never downloaded from the chat	Чат намагався завантажити «{0}» — програми з чату не завантажуються	El chat intentó descargar «{0}»: los programas nunca se descargan desde el chat	Der Chat wollte „{0}“ herunterladen – Programme werden aus dem Chat nie heruntergeladen	O chat tentou baixar “{0}” — programas nunca são baixados pelo chat	聊天试图下载“{0}”——不会从聊天中下载程序
+Codex закончил	Codex finished	Codex завершив	Codex terminó	Codex ist fertig	Codex terminou	Codex 已完成
+Подключено. Один раз подтвердите хуки в Codex командой /hooks — после этого запросы разрешений и «готово» появятся на острове.	Connected. Approve the hooks once in Codex with /hooks — after that, permission requests and "done" appear on the island.	Підключено. Один раз підтвердьте хуки в Codex командою /hooks — після цього запити дозволів і «готово» з’являться на острові.	Conectado. Aprueba los hooks una vez en Codex con /hooks; después, las solicitudes de permiso y el «listo» aparecerán en la isla.	Verbunden. Bestätige die Hooks einmal in Codex mit /hooks – danach erscheinen Berechtigungsanfragen und „fertig“ auf der Insel.	Conectado. Aprove os hooks uma vez no Codex com /hooks — depois, pedidos de permissão e “pronto” aparecem na ilha.	已连接。在 Codex 中用 /hooks 批准一次钩子，之后权限请求和“完成”会显示在小岛上。
+Запросы разрешений и «готово» от Codex CLI на острове. Добавит хуки в ~/.codex/hooks.json (резервная копия сохранится рядом).	Permission requests and "done" from Codex CLI on the island. Adds hooks to ~/.codex/hooks.json (a backup is kept next to it).	Запити дозволів і «готово» від Codex CLI на острові. Додасть хуки в ~/.codex/hooks.json (резервна копія збережеться поруч).	Solicitudes de permiso y «listo» de Codex CLI en la isla. Añade hooks a ~/.codex/hooks.json (se guarda una copia al lado).	Berechtigungsanfragen und „fertig“ von Codex CLI auf der Insel. Fügt Hooks zu ~/.codex/hooks.json hinzu (eine Sicherung bleibt daneben).	Pedidos de permissão e “pronto” do Codex CLI na ilha. Adiciona hooks a ~/.codex/hooks.json (um backup fica ao lado).	在小岛上显示 Codex CLI 的权限请求和“完成”。将钩子添加到 ~/.codex/hooks.json（旁边会保留备份）。
+hooks.json не является JSON-объектом	hooks.json is not a JSON object	hooks.json не є JSON-об’єктом	hooks.json no es un objeto JSON	hooks.json ist kein JSON-Objekt	hooks.json não é um objeto JSON	hooks.json 不是 JSON 对象
+ИИ-агенты	AI agents	ШІ-агенти	Agentes de IA	KI-Agenten	Agentes de IA	AI 智能体
+Включена облегчённая графика	Light graphics turned on	Увімкнено полегшену графіку	Gráficos ligeros activados	Leichte Grafik eingeschaltet	Gráficos leves ativados	已开启轻量图形
+Анимации шли рывками — эффекты выключены для плавности. Вернуть: Настройки → Поведение.	Animations were stuttering, so effects are off for smoothness. To bring them back: Settings → Behavior.	Анімації йшли ривками — ефекти вимкнено для плавності. Повернути: Налаштування → Поведінка.	Las animaciones daban tirones: los efectos se han desactivado para más fluidez. Para recuperarlos: Ajustes → Comportamiento.	Animationen ruckelten – Effekte sind für flüssigere Bewegung aus. Zurück: Einstellungen → Verhalten.	As animações estavam travando, então os efeitos foram desligados. Para voltar: Configurações → Comportamento.	动画出现卡顿，已关闭特效以保持流畅。恢复：设置 → 行为。
+Ещё раз — свернуть. Esc или клик мимо — тоже.	Press again to fold it. Esc or a click elsewhere works too.	Ще раз — згорнути. Esc або клік повз — теж.	Pulsa de nuevo para plegarla. Esc o un clic fuera también.	Nochmal drücken zum Einklappen. Esc oder ein Klick daneben geht auch.	Pressione de novo para recolher. Esc ou um clique fora também.	再按一次收起。按 Esc 或点击别处也可以。
+Это сочетание уже занято другой программой — выберите другое.	Another program already uses this shortcut — pick a different one.	Це поєднання вже зайняте іншою програмою — оберіть інше.	Otro programa ya usa este atajo: elige otro.	Ein anderes Programm nutzt dieses Kürzel bereits – wähle ein anderes.	Outro programa já usa este atalho — escolha outro.	此快捷键已被其他程序占用，请换一个。
+Тем в галерее: {0}. Хотите свою? Пришлите её в Telegram-канал.	Themes in the gallery: {0}. Want yours here? Send it to the Telegram channel.	Тем у галереї: {0}. Хочете свою? Надішліть її в Telegram-канал.	Temas en la galería: {0}. ¿Quieres el tuyo? Envíalo al canal de Telegram.	Themes in der Galerie: {0}. Eigenes Theme? Schick es an den Telegram-Kanal.	Temas na galeria: {0}. Quer o seu aqui? Envie no canal do Telegram.	图库中的主题：{0}。想加入你的主题？发到 Telegram 频道。
+Галерея пока пуста	The gallery is empty for now	Галерея поки порожня	La galería está vacía por ahora	Die Galerie ist noch leer	A galeria ainda está vazia	图库暂时为空
+Не удалось загрузить галерею — проверьте интернет	Couldn't load the gallery — check your internet connection	Не вдалося завантажити галерею — перевірте інтернет	No se pudo cargar la galería: comprueba la conexión	Galerie konnte nicht geladen werden – Internet prüfen	Não foi possível carregar a galeria — verifique a internet	无法加载图库，请检查网络
+Фото для острова	Photo for the island	Фото для острова	Foto para la isla	Foto für die Insel	Foto para a ilha	小岛背景照片
+Изображения	Images	Зображення	Imágenes	Bilder	Imagens	图片
+Не получилось открыть фото	Couldn't open the photo	Не вдалося відкрити фото	No se pudo abrir la foto	Foto konnte nicht geöffnet werden	Não foi possível abrir a foto	无法打开照片
+ТЕМЫ	THEMES	ТЕМИ	TEMAS	THEMES	TEMAS	主题
+Галерея тем из интернета	Online theme gallery	Галерея тем з інтернету	Galería de temas en línea	Online-Themegalerie	Galeria de temas online	在线主题库
+Своё фото…	Your photo…	Своє фото…	Tu foto…	Eigenes Foto…	Sua foto…	自定义照片…
+Убрать фото	Remove photo	Прибрати фото	Quitar foto	Foto entfernen	Remover foto	移除照片
+Открывать остров клавишами	Open the island with a shortcut	Відкривати острів клавішами	Abrir la isla con un atajo	Insel per Tastenkürzel öffnen	Abrir a ilha com um atalho	用快捷键打开小岛
+Полночь	Midnight	Північ	Medianoche	Mitternacht	Meia-noite	午夜
+Графит	Graphite	Графіт	Grafito	Graphit	Grafite	石墨
+Лес	Forest	Ліс	Bosque	Wald	Floresta	森林
+Роза	Rose	Троянда	Rosa	Rose	Rosa	玫瑰
+Лаванда	Lavender	Лаванда	Lavanda	Lavendel	Lavanda	薰衣草
+Песок	Sand	Пісок	Arena	Sand	Areia	沙丘
+Мята	Mint	М’ята	Menta	Minze	Hortelã	薄荷
+Небо	Sky	Небо	Cielo	Himmel	Céu	天空
+Сила волн	Wave strength	Сила хвиль	Intensidad de las ondas	Wellenstärke	Intensidade das ondas	波浪强度
+Обычный размер	Normal size	Звичайний розмір	Tamaño normal	Normale Größe	Tamanho normal	正常大小
+Больше места (для входа и капчи)	More room (for sign-in and captcha)	Більше місця (для входу й капчі)	Más espacio (para iniciar sesión y captcha)	Mehr Platz (für Anmeldung und Captcha)	Mais espaço (para login e captcha)	更大空间（用于登录和验证码）
+Открываю {0}	Opening {0}	Відкриваю {0}	Abriendo {0}	Öffne {0}	Abrindo {0}	正在打开 {0}
+Убрать	Remove	Прибрати	Quitar	Entfernen	Remover	移除
+Caps Lock включён	Caps Lock on	Caps Lock увімкнено	Bloq Mayús activado	Feststelltaste an	Caps Lock ativado	大写锁定已开启
+Caps Lock выключен	Caps Lock off	Caps Lock вимкнено	Bloq Mayús desactivado	Feststelltaste aus	Caps Lock desativado	大写锁定已关闭
+Скопировать	Copy	Скопіювати	Copiar	Kopieren	Copiar	复制
+Размер острова	Island size	Розмір острова	Tamaño de la isla	Inselgröße	Tamanho da ilha	灵动岛大小
+Прятать остров поверх программ	Hide the island over these apps	Ховати острів поверх програм	Ocultar la isla sobre estas apps	Insel über diesen Apps ausblenden	Ocultar a ilha sobre estes apps	在这些程序上方隐藏灵动岛
+Например, игры без полного экрана или программы для созвонов	For example, games in windowed mode or video-call apps	Наприклад, ігри не на весь екран або програми для дзвінків	Por ejemplo, juegos en ventana o apps de videollamadas	Zum Beispiel Spiele im Fenstermodus oder Videocall-Apps	Por exemplo, jogos em janela ou apps de videochamada	例如窗口模式的游戏或视频通话程序
+Закрепить на месте (не перетаскивать)	Lock in place (no dragging)	Закріпити на місці (не перетягувати)	Fijar en su sitio (sin arrastrar)	Fixieren (nicht verschieben)	Fixar no lugar (sem arrastar)	固定位置（禁止拖动）
+Показывать Caps Lock	Show Caps Lock	Показувати Caps Lock	Mostrar Bloq Mayús	Feststelltaste anzeigen	Mostrar Caps Lock	显示大写锁定
+Показывать смену раскладки	Show keyboard layout changes	Показувати зміну розкладки	Mostrar cambio de distribución de teclado	Tastaturlayout-Wechsel anzeigen	Mostrar troca de layout do teclado	显示键盘布局切换
+Скрывать остров на скриншотах и демонстрации экрана	Hide the island in screenshots and screen sharing	Ховати острів на скріншотах і демонстрації екрана	Ocultar la isla en capturas y al compartir pantalla	Insel in Screenshots und bei Bildschirmfreigabe ausblenden	Ocultar a ilha em capturas e no compartilhamento de tela	在截图和屏幕共享中隐藏灵动岛
+Если выключить, остров будет виден на скриншотах, записи и в Zoom/Discord, но эффект стекла станет сплошным	When off, the island shows up in screenshots, recordings and Zoom/Discord, but the glass effect turns solid	Якщо вимкнути, острів буде видно на скріншотах, записі та в Zoom/Discord, але ефект скла стане суцільним	Si lo desactivas, la isla aparecerá en capturas, grabaciones y en Zoom/Discord, pero el efecto cristal será sólido	Wenn aus, ist die Insel in Screenshots, Aufnahmen und Zoom/Discord sichtbar, aber der Glaseffekt wird deckend	Se desligar, a ilha aparece em capturas, gravações e no Zoom/Discord, mas o efeito de vidro fica sólido	关闭后，灵动岛会出现在截图、录屏和 Zoom/Discord 中，但玻璃效果会变为不透明
+Включаю счётчик FPS…	Turning on the FPS counter…	Вмикаю лічильник FPS…	Activando el contador de FPS…	FPS-Zähler wird eingeschaltet…	Ativando o contador de FPS…	正在开启 FPS 计数器…
+FPS включён	FPS is on	FPS увімкнено	FPS activado	FPS ist an	FPS ativado	FPS 已开启
+Выходить из Windows не нужно	No need to sign out of Windows	Виходити з Windows не потрібно	No hace falta cerrar sesión en Windows	Abmelden ist nicht nötig	Não é preciso sair do Windows	无需注销 Windows
+Отчёт скопирован	Report copied	Звіт скопійовано	Informe copiado	Bericht kopiert	Relatório copiado	报告已复制
+Вставьте его в комментарии или в Telegram-канал	Paste it in the comments or the Telegram channel	Вставте його в коментарі або в Telegram-канал	Pégalo en los comentarios o en el canal de Telegram	Füge ihn in die Kommentare oder den Telegram-Kanal ein	Cole nos comentários ou no canal do Telegram	将其粘贴到评论区或 Telegram 频道
+Центр уведомлений Windows отключён (обычно это делают программы-«твикеры»), поэтому Windows не хранит уведомления и Atoll их не видит. Включите его обратно в той же программе.	The Windows notification center is turned off (usually by "tweak" tools), so Windows keeps no notifications and Atoll can't see them. Turn it back on in the same tool.	Центр сповіщень Windows вимкнено (зазвичай це роблять програми-«твікери»), тому Windows не зберігає сповіщення й Atoll їх не бачить. Увімкніть його назад у тій самій програмі.	El centro de notificaciones de Windows está desactivado (suelen hacerlo los programas de «optimización»), así que Windows no guarda notificaciones y Atoll no puede verlas. Vuelve a activarlo en ese mismo programa.	Das Windows-Benachrichtigungscenter ist ausgeschaltet (meist durch „Tweak“-Programme), daher speichert Windows keine Benachrichtigungen und Atoll sieht sie nicht. Schalte es im selben Programm wieder ein.	A central de notificações do Windows está desativada (geralmente por programas de «otimização»), então o Windows não guarda notificações e o Atoll não as vê. Reative-a no mesmo programa.	Windows 通知中心已被关闭（通常是“优化”工具所为），因此 Windows 不保存通知，Atoll 无法看到。请在同一工具中重新开启。
+Windows не дал доступ к уведомлениям: «Параметры → Конфиденциальность → Уведомления» — разрешите приложениям доступ.	Windows didn't allow access to notifications: Settings → Privacy → Notifications — allow apps to access them.	Windows не дав доступ до сповіщень: «Параметри → Конфіденційність → Сповіщення» — дозвольте програмам доступ.	Windows no permitió el acceso a las notificaciones: Configuración → Privacidad → Notificaciones — permite el acceso a las apps.	Windows hat den Zugriff auf Benachrichtigungen nicht erlaubt: Einstellungen → Datenschutz → Benachrichtigungen — Apps den Zugriff erlauben.	O Windows não permitiu acesso às notificações: Configurações → Privacidade → Notificações — permita o acesso aos apps.	Windows 未允许访问通知：设置 → 隐私 → 通知 — 允许应用访问。
+В Telegram Desktop включите «Настройки → Уведомления → Системные уведомления», иначе Telegram показывает свои окна, которые Windows не видит.	In Telegram Desktop turn on Settings → Notifications → "Use system notifications", otherwise Telegram shows its own windows that Windows can't see.	У Telegram Desktop увімкніть «Налаштування → Сповіщення → Системні сповіщення», інакше Telegram показує свої вікна, яких Windows не бачить.	En Telegram Desktop activa Ajustes → Notificaciones → «Usar notificaciones del sistema»; si no, Telegram muestra sus propias ventanas, que Windows no ve.	Schalte in Telegram Desktop Einstellungen → Benachrichtigungen → „Systembenachrichtigungen verwenden“ ein, sonst zeigt Telegram eigene Fenster, die Windows nicht sieht.	No Telegram Desktop ative Configurações → Notificações → «Usar notificações do sistema»; senão o Telegram mostra janelas próprias que o Windows não vê.	在 Telegram Desktop 中开启“设置 → 通知 → 使用系统通知”，否则 Telegram 会显示自己的窗口，Windows 无法识别。
+Если выключить, остров будет виден на скриншотах, записи и в Zoom/Discord, но эффект стекла станет сплошным. Пока работает запись NVIDIA, остров сам остаётся видимым — иначе она не пишет рабочий стол	When off, the island shows up in screenshots, recordings and Zoom/Discord, but the glass turns solid. While NVIDIA's recorder runs, the island stays visible by itself — otherwise it won't record the desktop	Якщо вимкнути, острів буде видно на скріншотах, записі та в Zoom/Discord, але ефект скла стане суцільним. Поки працює запис NVIDIA, острів сам лишається видимим — інакше вона не пише робочий стіл	Si lo desactivas, la isla aparecerá en capturas, grabaciones y Zoom/Discord, pero el cristal será sólido. Mientras funciona la grabación de NVIDIA, la isla queda visible sola; si no, no graba el escritorio	Wenn aus, ist die Insel in Screenshots, Aufnahmen und Zoom/Discord sichtbar, aber das Glas wird deckend. Solange die NVIDIA-Aufnahme läuft, bleibt die Insel von selbst sichtbar — sonst nimmt sie den Desktop nicht auf	Se desligar, a ilha aparece em capturas, gravações e no Zoom/Discord, mas o vidro fica sólido. Enquanto a gravação da NVIDIA roda, a ilha fica visível sozinha — senão ela não grava a área de trabalho	关闭后，灵动岛会出现在截图、录屏和 Zoom/Discord 中，但玻璃效果会变为不透明。NVIDIA 录制运行时，灵动岛会自动保持可见，否则它无法录制桌面
+Скопировать отчёт о плавности	Copy smoothness report	Скопіювати звіт про плавність	Copiar informe de fluidez	Flüssigkeitsbericht kopieren	Copiar relatório de fluidez	复制流畅度报告
+Если остров дёргается — отправьте этот отчёт разработчику	If the island stutters, send this report to the developer	Якщо острів смикається — надішліть цей звіт розробнику	Si la isla va a tirones, envía este informe al desarrollador	Wenn die Insel ruckelt, schick diesen Bericht an den Entwickler	Se a ilha travar, envie este relatório ao desenvolvedor	如果灵动岛卡顿，请将此报告发送给开发者
+Звонок в Discord · нажмите, чтобы открыть	Discord call · click to open	Дзвінок у Discord · натисніть, щоб відкрити	Llamada de Discord · haz clic para abrir	Discord-Anruf · zum Öffnen klicken	Chamada no Discord · clique para abrir	Discord 通话 · 点击打开
+Звонок Discord — отдельным островком справа	Discord call as a small island on the right	Дзвінок Discord — окремим острівцем праворуч	Llamada de Discord como una pequeña isla a la derecha	Discord-Anruf als kleine Insel rechts	Chamada do Discord como uma ilhinha à direita	Discord 通话以右侧小岛显示
+Весна	Spring	Весна	Primavera	Frühling	Primavera	春天
+Лето	Summer	Літо	Verano	Sommer	Verão	夏天
+Осень	Autumn	Осінь	Otoño	Herbst	Outono	秋天
+Зима	Winter	Зима	Invierno	Winter	Inverno	冬天
+Привычки забыты	Habits forgotten	Звички забуто	Hábitos olvidados	Gewohnheiten vergessen	Hábitos esquecidos	已清除习惯
+Остров начнёт учиться заново	The island will start learning again	Острів почне вчитися заново	La isla empezará a aprender de nuevo	Die Insel lernt von vorn	A ilha vai aprender de novo	灵动岛将重新学习
+Мало заряда — облегчённая графика	Low battery — light graphics	Мало заряду — полегшена графіка	Batería baja: gráficos ligeros	Akku schwach — leichte Grafik	Bateria fraca — gráficos leves	电量低 — 已启用轻量图形
+Эффекты вернутся, когда подключите зарядку	Effects come back when you plug in the charger	Ефекти повернуться, коли під'єднаєте зарядку	Los efectos volverán al conectar el cargador	Effekte kommen zurück, wenn du das Ladegerät ansteckst	Os efeitos voltam quando ligar o carregador	接上充电器后效果会恢复
+Умный остров	Smart island	Розумний острів	Isla inteligente	Smarte Insel	Ilha inteligente	智能灵动岛
+Открывается на том, что важно сейчас (таймер, звонок, скопированное, музыка) или на вкладке, которую вы обычно открываете в это время. Пока вы печатаете, не раскрывается от курсора, а сообщения ждут паузы. При низком заряде ноутбука включает облегчённую графику. Привычки хранятся только на этом ПК.	Opens on what matters now (a timer, a call, something you copied, the music) or on the tab you usually open at this time. While you type it doesn't pop open under the cursor, and messages wait for a pause. On low laptop battery it switches to light graphics. Habits stay on this PC only.	Відкривається на тому, що важливо зараз (таймер, дзвінок, скопійоване, музика) або на вкладці, яку ви зазвичай відкриваєте в цей час. Поки ви друкуєте, не розкривається від курсора, а повідомлення чекають паузи. За низького заряду ноутбука вмикає полегшену графіку. Звички зберігаються лише на цьому ПК.	Se abre en lo importante ahora (un temporizador, una llamada, algo copiado, la música) o en la pestaña que sueles abrir a esta hora. Mientras escribes no se abre bajo el cursor y los mensajes esperan una pausa. Con poca batería del portátil activa los gráficos ligeros. Los hábitos se quedan solo en este PC.	Öffnet sich mit dem, was gerade wichtig ist (Timer, Anruf, Kopiertes, Musik) oder mit dem Tab, den du um diese Zeit meist öffnest. Beim Tippen klappt sie unter dem Cursor nicht auf, und Nachrichten warten auf eine Pause. Bei schwachem Laptop-Akku schaltet sie auf leichte Grafik. Gewohnheiten bleiben nur auf diesem PC.	Abre no que importa agora (um timer, uma chamada, algo copiado, a música) ou na aba que você costuma abrir nesse horário. Enquanto você digita, não abre sob o cursor, e as mensagens esperam uma pausa. Com pouca bateria no notebook, ativa gráficos leves. Os hábitos ficam só neste PC.	打开时显示当下最重要的内容（计时器、通话、刚复制的内容、音乐），或你通常在这个时间打开的标签页。打字时不会因光标经过而展开，消息会等到停顿再显示。笔记本电量低时自动启用轻量图形。习惯数据只保存在本机。
+Забыть привычки	Forget habits	Забути звички	Olvidar hábitos	Gewohnheiten vergessen	Esquecer hábitos	清除习惯
+Google / Outlook / любой календарь (ICS)	Google / Outlook / any calendar (ICS)	Google / Outlook / будь-який календар (ICS)	Google / Outlook / cualquier calendario (ICS)	Google / Outlook / beliebiger Kalender (ICS)	Google / Outlook / qualquer calendário (ICS)	Google / Outlook / 任意日历 (ICS)
+Ближайшее	Up next	Найближче	Próximo	Als nächstes	Próximos	即将到来
+Ветер	Wind	Вітер	Viento	Wind	Vento	风
+Видеокарта	GPU	Відеокарта	GPU	Grafikkarte	GPU	显卡
+Влажность	Humidity	Вологість	Humedad	Luftfeuchte	Umidade	湿度
+Давление	Pressure	Тиск	Presión	Luftdruck	Pressão	气压
+Заряд устройств	Device battery	Заряд пристроїв	Batería de dispositivos	Akkustand der Geräte	Bateria dos dispositivos	设备电量
+Микрофон и камера сейчас	Microphone and camera now	Мікрофон і камера зараз	Micrófono y cámara ahora	Mikrofon und Kamera jetzt	Microfone e câmera agora	当前麦克风和摄像头
+Напомнить	Remind me	Нагадати	Recordar	Erinnern	Lembrar	提醒我
+Осадки	Precipitation	Опади	Precipitación	Niederschlag	Precipitação	降水
+Память	Memory	Пам'ять	Memoria	Arbeitsspeicher	Memória	内存
+Переливание в покое	Idle glow	Переливи в спокої	Brillo en reposo	Leuchten im Ruhezustand	Brilho em repouso	待机光效
+По часам	Hourly	Погодинно	Por horas	Stündlich	Por hora	逐小时
+Процессор	CPU	Процесор	CPU	Prozessor	CPU	处理器
+Пункт управления	Control center	Пункт керування	Centro de control	Kontrollzentrum	Central de controle	控制中心
+Сейчас	Now	Зараз	Ahora	Jetzt	Agora	当前
+Солнце	Sun	Сонце	Sol	Sonne	Sol	日出日落
+Стиль	Style	Стиль	Estilo	Stil	Estilo	样式
+Темы	Themes	Теми	Temas	Designs	Temas	主题
+УФ-индекс	UV index	УФ-індекс	Índice UV	UV-Index	Índice UV	紫外线指数
+Цвет острова	Island color	Колір острова	Color de la isla	Inselfarbe	Cor da ilha	灵动岛颜色
+Жидкое стекло	Liquid glass	Рідке скло	Cristal líquido	Flüssiges Glas	Vidro líquido	液态玻璃
+Новое сообщение	New message	Нове повідомлення	Mensaje nuevo	Neue Nachricht	Nova mensagem	新消息
+Звук выключен	Sound off	Звук вимкнено	Sonido desactivado	Ton aus	Som desligado	已静音
+Громкость	Volume	Гучність	Volumen	Lautstärke	Volume	音量
+Яркость	Brightness	Яскравість	Brillo	Helligkeit	Brilho	亮度
+нажмите, чтобы войти	click to join	натисніть, щоб увійти	haz clic para unirte	klicken zum Beitreten	clique para entrar	点击加入
+Всё работает	Everything works	Усе працює	Todo funciona	Alles funktioniert	Tudo funciona	一切正常
+Требуют внимания: {0}	Need attention: {0}	Потребують уваги: {0}	Requieren atención: {0}	Brauchen Aufmerksamkeit: {0}	Precisam de atenção: {0}	需要注意：{0}
+Проверить снова	Check again	Перевірити знову	Comprobar de nuevo	Erneut prüfen	Verificar de novo	重新检查
+Скопировать отчёт	Copy report	Скопіювати звіт	Copiar informe	Bericht kopieren	Copiar relatório	复制报告
+Текстом: его можно отправить в Telegram-канал, если нужна помощь	As text: you can send it to the Telegram channel if you need help	Текстом: його можна надіслати в Telegram-канал, якщо потрібна допомога	Como texto: puedes enviarlo al canal de Telegram si necesitas ayuda	Als Text: Sie können ihn an den Telegram-Kanal senden, wenn Sie Hilfe brauchen	Como texto: pode enviá-lo ao canal do Telegram se precisar de ajuda	文本形式：需要帮助时可以发到 Telegram 频道
+Вставьте его в сообщение: Ctrl+V	Paste it into a message: Ctrl+V	Вставте його в повідомлення: Ctrl+V	Pégalo en un mensaje: Ctrl+V	In eine Nachricht einfügen: Strg+V	Cole numa mensagem: Ctrl+V	粘贴到消息中：Ctrl+V
+Сообщения мессенджеров	Messenger messages	Повідомлення месенджерів	Mensajes de mensajería	Messenger-Nachrichten	Mensagens de mensageiros	聊天软件消息
+Выключено в настройках.	Turned off in settings.	Вимкнено в налаштуваннях.	Desactivado en los ajustes.	In den Einstellungen ausgeschaltet.	Desligado nas definições.	已在设置中关闭。
+Включить	Turn on	Увімкнути	Activar	Einschalten	Ativar	开启
+Центр уведомлений Windows отключён (так делают программы-«твикеры»). Остров показывает «новое сообщение» по счётчику непрочитанных в окне мессенджера, но без текста. Чтобы видеть текст, включите центр уведомлений обратно в той же программе.	The Windows notification center is switched off ("tweaker" programs do that). The island shows "new message" from the unread counter in the messenger's window, but without the text. To see the text, switch the notification center back on in that same program.	Центр сповіщень Windows вимкнено (так роблять програми-«твікери»). Острів показує «нове повідомлення» за лічильником непрочитаних у вікні месенджера, але без тексту. Щоб бачити текст, увімкніть центр сповіщень назад у тій самій програмі.	El centro de notificaciones de Windows está desactivado (lo hacen los programas «tweaker»). La isla muestra «mensaje nuevo» según el contador de no leídos de la ventana de la mensajería, pero sin el texto. Para ver el texto, vuelve a activar el centro de notificaciones en ese mismo programa.	Das Windows-Benachrichtigungscenter ist ausgeschaltet (das machen „Tweaker“-Programme). Die Insel zeigt „Neue Nachricht“ anhand des Ungelesen-Zählers im Messenger-Fenster, aber ohne Text. Um den Text zu sehen, schalten Sie das Benachrichtigungscenter in demselben Programm wieder ein.	O centro de notificações do Windows está desligado (programas «tweaker» fazem isso). A ilha mostra «nova mensagem» pelo contador de não lidas na janela do mensageiro, mas sem o texto. Para ver o texto, volte a ligar o centro de notificações nesse mesmo programa.	Windows 通知中心已被关闭（“优化”工具常这样做）。灵动岛会根据聊天软件窗口里的未读计数显示“新消息”，但没有内容。想看到内容，请在同一工具里重新开启通知中心。
+Windows не дал доступ к уведомлениям: остров показывает только «новое сообщение», без текста.	Windows did not allow access to notifications: the island shows only "new message", without the text.	Windows не дав доступу до сповіщень: острів показує лише «нове повідомлення», без тексту.	Windows no permitió el acceso a las notificaciones: la isla solo muestra «mensaje nuevo», sin el texto.	Windows hat keinen Zugriff auf Benachrichtigungen erlaubt: Die Insel zeigt nur „Neue Nachricht“, ohne Text.	O Windows não permitiu o acesso às notificações: a ilha mostra apenas «nova mensagem», sem o texto.	Windows 未允许访问通知：灵动岛只显示“新消息”，没有内容。
+Открыть параметры	Open Settings	Відкрити параметри	Abrir Configuración	Einstellungen öffnen	Abrir Definições	打开设置
+Доступ есть. В Telegram Desktop должны быть включены «Системные уведомления», иначе Windows его сообщений не видит.	Access is allowed. In Telegram Desktop, "System notifications" must be on, otherwise Windows doesn't see its messages.	Доступ є. У Telegram Desktop мають бути ввімкнені «Системні сповіщення», інакше Windows його повідомлень не бачить.	Hay acceso. En Telegram Desktop deben estar activadas las «Notificaciones del sistema»; si no, Windows no ve sus mensajes.	Zugriff ist erlaubt. In Telegram Desktop müssen „Systembenachrichtigungen“ eingeschaltet sein, sonst sieht Windows dessen Nachrichten nicht.	Há acesso. No Telegram Desktop, as «Notificações do sistema» têm de estar ligadas; caso contrário, o Windows não vê as mensagens dele.	已获得访问权限。Telegram Desktop 中需开启“系统通知”，否则 Windows 看不到它的消息。
+Вижу плеер: {0}	Player found: {0}	Бачу плеєр: {0}	Reproductor detectado: {0}	Player gefunden: {0}	Leitor encontrado: {0}	检测到播放器：{0}
+Работает. Включите музыку в любом плеере или браузере — она появится на острове.	Works. Play music in any player or browser and it will appear on the island.	Працює. Увімкніть музику в будь-якому плеєрі чи браузері — вона з’явиться на острові.	Funciona. Pon música en cualquier reproductor o navegador y aparecerá en la isla.	Funktioniert. Spielen Sie Musik in einem Player oder Browser ab – sie erscheint auf der Insel.	Funciona. Ponha música em qualquer leitor ou navegador e ela aparece na ilha.	正常。在任意播放器或浏览器中播放音乐，就会显示在灵动岛上。
+Windows не отдаёт сведения о музыке. Обычно помогает перезапуск Atoll или компьютера.	Windows gives no information about music. Restarting Atoll or the computer usually helps.	Windows не віддає відомості про музику. Зазвичай допомагає перезапуск Atoll або комп’ютера.	Windows no da información sobre la música. Normalmente ayuda reiniciar Atoll o el equipo.	Windows liefert keine Informationen zur Musik. Meist hilft ein Neustart von Atoll oder des Computers.	O Windows não dá informação sobre a música. Normalmente ajuda reiniciar o Atoll ou o computador.	Windows 没有提供音乐信息。通常重启 Atoll 或电脑即可解决。
+Город не указан.	No city set.	Місто не вказано.	No se ha indicado la ciudad.	Keine Stadt angegeben.	Cidade não indicada.	未设置城市。
+Указать город	Set city	Вказати місто	Indicar ciudad	Stadt angeben	Indicar cidade	设置城市
+Нет связи с сервисами погоды. Проверьте интернет; Atoll сам повторяет попытки.	No connection to the weather services. Check the internet; Atoll keeps retrying by itself.	Немає зв’язку із сервісами погоди. Перевірте інтернет; Atoll сам повторює спроби.	Sin conexión con los servicios del tiempo. Revisa internet; Atoll reintenta por sí solo.	Keine Verbindung zu den Wetterdiensten. Prüfen Sie das Internet; Atoll versucht es von selbst erneut.	Sem ligação aos serviços de meteorologia. Verifique a internet; o Atoll volta a tentar sozinho.	无法连接天气服务。请检查网络；Atoll 会自动重试。
+Ещё не загружена.	Not loaded yet.	Ще не завантажена.	Aún no se ha cargado.	Noch nicht geladen.	Ainda não carregada.	尚未加载。
+Обновляется. Источник: {0}	Updating. Source: {0}	Оновлюється. Джерело: {0}	Se actualiza. Fuente: {0}	Wird aktualisiert. Quelle: {0}	A atualizar. Fonte: {0}	正常更新。来源：{0}
+Обновляется.	Updating.	Оновлюється.	Se actualiza.	Wird aktualisiert.	A atualizar.	正常更新。
+FPS в играх	FPS in games	FPS в іграх	FPS en juegos	FPS in Spielen	FPS em jogos	游戏中的 FPS
+Выключено: в играх остров прячется целиком. Включается в разделе «Поведение».	Off: in games the island hides completely. Turn it on under "Behavior".	Вимкнено: в іграх острів ховається повністю. Вмикається в розділі «Поведінка».	Desactivado: en los juegos la isla se oculta por completo. Se activa en «Comportamiento».	Aus: In Spielen blendet sich die Insel ganz aus. Einschalten unter „Verhalten“.	Desligado: nos jogos a ilha esconde-se por completo. Ativa-se em «Comportamento».	已关闭：游戏中灵动岛会完全隐藏。可在“行为”中开启。
+Счётчик работает: в играх он появится в пилюле.	The counter works: in games it shows in the pill.	Лічильник працює: в іграх він з’явиться в пілюлі.	El contador funciona: en los juegos aparece en la píldora.	Der Zähler funktioniert: In Spielen erscheint er in der Pille.	O contador funciona: nos jogos aparece na pílula.	计数器正常：游戏中会显示在胶囊里。
+Нужно один раз разрешить доступ — Windows спросит подтверждение.	Access has to be allowed once — Windows will ask for confirmation.	Потрібно один раз дозволити доступ — Windows попросить підтвердження.	Hay que permitir el acceso una vez: Windows pedirá confirmación.	Der Zugriff muss einmal erlaubt werden – Windows fragt nach Bestätigung.	É preciso permitir o acesso uma vez — o Windows pede confirmação.	需要允许一次访问——Windows 会请求确认。
+Работает: остров показывает размытый фон за собой.	Works: the island shows the blurred background behind it.	Працює: острів показує розмитий фон за собою.	Funciona: la isla muestra el fondo desenfocado que tiene detrás.	Funktioniert: Die Insel zeigt den unscharfen Hintergrund hinter sich.	Funciona: a ilha mostra o fundo desfocado atrás dela.	正常：灵动岛显示其后方的模糊背景。
+Сейчас стекло сплошное: Windows не дал снять фон за островом.	The glass is solid right now: Windows did not let Atoll take the picture behind the island.	Зараз скло суцільне: Windows не дав зняти фон за островом.	Ahora el cristal es opaco: Windows no permitió captar el fondo de detrás de la isla.	Das Glas ist gerade deckend: Windows hat das Bild hinter der Insel nicht freigegeben.	Agora o vidro está opaco: o Windows não deixou captar o fundo atrás da ilha.	目前玻璃为实色：Windows 未允许获取灵动岛后方的画面。
+Отключено облегчённой графикой (слабый ПК или экономия заряда).	Turned off by light graphics (a slow PC or battery saving).	Вимкнено полегшеною графікою (слабкий ПК або економія заряду).	Desactivado por los gráficos ligeros (PC lento o ahorro de batería).	Durch die leichte Grafik ausgeschaltet (langsamer PC oder Akkusparen).	Desligado pelos gráficos leves (PC lento ou poupança de bateria).	已被轻量图形关闭（电脑较慢或正在省电）。
+Запуск с Windows	Start with Windows	Запуск із Windows	Inicio con Windows	Start mit Windows	Iniciar com o Windows	随 Windows 启动
+Остров запускается сам при входе в систему.	The island starts by itself when you sign in.	Острів запускається сам під час входу в систему.	La isla se inicia sola al iniciar sesión.	Die Insel startet von selbst bei der Anmeldung.	A ilha inicia sozinha quando inicia sessão.	登录时灵动岛会自动启动。
+После перезагрузки остров придётся открывать вручную.	After a restart you will have to open the island by hand.	Після перезавантаження острів доведеться відкривати вручну.	Tras reiniciar tendrás que abrir la isla a mano.	Nach einem Neustart müssen Sie die Insel von Hand öffnen.	Depois de reiniciar, terá de abrir a ilha à mão.	重启后需要手动打开灵动岛。
+Автопроверка выключена: новые версии сами не придут.	Automatic checks are off: new versions won't arrive by themselves.	Автоперевірку вимкнено: нові версії самі не прийдуть.	La comprobación automática está desactivada: las versiones nuevas no llegarán solas.	Die automatische Prüfung ist aus: Neue Versionen kommen nicht von selbst.	A verificação automática está desligada: as novas versões não chegam sozinhas.	自动检查已关闭：新版本不会自动送达。
+Не подключён. Напоминания работают и без него; ссылку календаря можно добавить на вкладке «Календарь».	Not connected. Reminders work without it; a calendar link can be added on the "Calendar" tab.	Не підключено. Нагадування працюють і без нього; посилання календаря можна додати на вкладці «Календар».	No conectado. Los recordatorios funcionan sin él; el enlace del calendario se añade en la pestaña «Calendario».	Nicht verbunden. Erinnerungen funktionieren auch ohne; ein Kalender-Link lässt sich im Tab „Kalender“ hinzufügen.	Não ligado. Os lembretes funcionam sem ele; a ligação do calendário adiciona-se no separador «Calendário».	未连接。提醒无需日历也能用；可在“日历”标签页添加日历链接。
+Подключён: за 10 минут до события остров напомнит, а по клику откроет ссылку на звонок.	Connected: the island reminds you 10 minutes before an event, and a click opens the call link.	Підключено: за 10 хвилин до події острів нагадає, а за кліком відкриє посилання на дзвінок.	Conectado: la isla avisa 10 minutos antes de un evento y un clic abre el enlace de la llamada.	Verbunden: Die Insel erinnert 10 Minuten vor einem Termin, ein Klick öffnet den Link zum Anruf.	Ligado: a ilha avisa 10 minutos antes de um evento e um clique abre a ligação da chamada.	已连接：活动开始前 10 分钟灵动岛会提醒，点击即可打开会议链接。
+Не получается загрузить календарь: проверьте ссылку и интернет.	The calendar can't be loaded: check the link and the internet.	Не вдається завантажити календар: перевірте посилання та інтернет.	No se puede cargar el calendario: revisa el enlace e internet.	Der Kalender lässt sich nicht laden: Prüfen Sie den Link und das Internet.	Não é possível carregar o calendário: verifique a ligação e a internet.	无法加载日历：请检查链接和网络。
+Центр уведомлений Windows отключён (обычно это делают программы-«твикеры»), поэтому Windows не хранит уведомления и Atoll не видит их текст. Остров всё равно скажет «новое сообщение» — по счётчику непрочитанных в окне мессенджера. Чтобы видеть и текст, включите центр уведомлений обратно в той же программе.	The Windows notification center is switched off ("tweaker" programs usually do that), so Windows keeps no notifications and Atoll can't see their text. The island will still say "new message" — from the unread counter in the messenger's window. To see the text too, switch the notification center back on in that same program.	Центр сповіщень Windows вимкнено (зазвичай це роблять програми-«твікери»), тому Windows не зберігає сповіщення й Atoll не бачить їхній текст. Острів усе одно скаже «нове повідомлення» — за лічильником непрочитаних у вікні месенджера. Щоб бачити й текст, увімкніть центр сповіщень назад у тій самій програмі.	El centro de notificaciones de Windows está desactivado (suelen hacerlo los programas «tweaker»), así que Windows no guarda notificaciones y Atoll no ve su texto. La isla dirá igualmente «mensaje nuevo», según el contador de no leídos de la ventana de la mensajería. Para ver también el texto, vuelve a activar el centro de notificaciones en ese mismo programa.	Das Windows-Benachrichtigungscenter ist ausgeschaltet (meist durch „Tweaker“-Programme), daher speichert Windows keine Benachrichtigungen und Atoll sieht ihren Text nicht. Die Insel meldet trotzdem „Neue Nachricht“ – anhand des Ungelesen-Zählers im Messenger-Fenster. Um auch den Text zu sehen, schalten Sie das Benachrichtigungscenter in demselben Programm wieder ein.	O centro de notificações do Windows está desligado (costumam fazê-lo programas «tweaker»), por isso o Windows não guarda notificações e o Atoll não vê o texto. A ilha diz na mesma «nova mensagem» — pelo contador de não lidas na janela do mensageiro. Para ver também o texto, volte a ligar o centro de notificações nesse mesmo programa.	Windows 通知中心已被关闭（通常是“优化”工具所为），所以 Windows 不保存通知，Atoll 看不到内容。灵动岛仍会根据聊天软件窗口里的未读计数提示“新消息”。想同时看到内容，请在同一工具里重新开启通知中心。
+Windows не дал доступ к уведомлениям, поэтому остров показывает только «новое сообщение» без текста. Чтобы видеть текст: «Параметры → Конфиденциальность → Уведомления» — разрешите приложениям доступ.	Windows did not allow access to notifications, so the island shows only "new message" without the text. To see the text: "Settings → Privacy → Notifications" — allow apps to access them.	Windows не дав доступу до сповіщень, тому острів показує лише «нове повідомлення» без тексту. Щоб бачити текст: «Параметри → Конфіденційність → Сповіщення» — дозвольте застосункам доступ.	Windows no permitió el acceso a las notificaciones, así que la isla solo muestra «mensaje nuevo» sin el texto. Para ver el texto: «Configuración → Privacidad → Notificaciones», permite el acceso a las aplicaciones.	Windows hat keinen Zugriff auf Benachrichtigungen erlaubt, daher zeigt die Insel nur „Neue Nachricht“ ohne Text. Für den Text: „Einstellungen → Datenschutz → Benachrichtigungen“ – Apps den Zugriff erlauben.	O Windows não permitiu o acesso às notificações, por isso a ilha mostra apenas «nova mensagem» sem o texto. Para ver o texto: «Definições → Privacidade → Notificações» — permita o acesso às aplicações.	Windows 未允许访问通知，所以灵动岛只显示“新消息”，没有内容。想看到内容：“设置 → 隐私 → 通知”，允许应用访问。
+СВОЯ ТЕМА	YOUR OWN THEME	ВЛАСНА ТЕМА	TU PROPIO TEMA	EIGENES DESIGN	O SEU TEMA	自定义主题
+Цвет острова, например #101820	Island color, for example #101820	Колір острова, наприклад #101820	Color de la isla, por ejemplo #101820	Inselfarbe, zum Beispiel #101820	Cor da ilha, por exemplo #101820	灵动岛颜色，例如 #101820
+Цвет акцента: кнопки, полоски, значки	Accent color: buttons, bars, icons	Колір акценту: кнопки, смужки, значки	Color de acento: botones, barras, iconos	Akzentfarbe: Schaltflächen, Balken, Symbole	Cor de destaque: botões, barras, ícones	强调色：按钮、进度条、图标
+Остров	Island	Острів	Isla	Insel	Ilha	灵动岛
+Акцент	Accent	Акцент	Acento	Akzent	Destaque	强调色
+Без сцены	No scene	Без сцени	Sin escena	Keine Szene	Sem cena	无场景
+Название темы	Theme name	Назва теми	Nombre del tema	Name des Designs	Nome do tema	主题名称
+Сохранить тему	Save theme	Зберегти тему	Guardar tema	Design speichern	Guardar tema	保存主题
+Название	Name	Назва	Nombre	Name	Nome	名称
+Код темы: atoll-theme:…	Theme code: atoll-theme:…	Код теми: atoll-theme:…	Código del tema: atoll-theme:…	Design-Code: atoll-theme:…	Código do tema: atoll-theme:…	主题代码：atoll-theme:…
+Добавить по коду	Add by code	Додати за кодом	Añadir por código	Per Code hinzufügen	Adicionar por código	通过代码添加
+Код темы	Theme code	Код теми	Código del tema	Design-Code	Código do tema	主题代码
+Свои темы появляются в списке выше. Правый клик по своей теме — поделиться кодом или удалить.	Your themes appear in the list above. Right-click one of yours to share its code or delete it.	Власні теми з’являються у списку вище. Клацніть правою кнопкою по своїй темі — поділитися кодом або видалити.	Tus temas aparecen en la lista de arriba. Haz clic derecho en uno tuyo para compartir su código o eliminarlo.	Eigene Designs erscheinen in der Liste oben. Rechtsklick auf ein eigenes Design: Code teilen oder löschen.	Os seus temas aparecem na lista acima. Clique com o botão direito num deles para partilhar o código ou eliminá-lo.	自定义主题会出现在上方列表中。右键点击自己的主题可分享代码或删除。
+Цвет пишется так: #101820 — решётка и шесть знаков.	A color is written like this: #101820 — a hash and six characters.	Колір пишеться так: #101820 — решітка і шість знаків.	Un color se escribe así: #101820 — almohadilla y seis caracteres.	Eine Farbe schreibt man so: #101820 – Raute und sechs Zeichen.	Uma cor escreve-se assim: #101820 — cardinal e seis caracteres.	颜色写法：#101820——井号加六位字符。
+Дайте теме название.	Give the theme a name.	Дайте темі назву.	Ponle un nombre al tema.	Geben Sie dem Design einen Namen.	Dê um nome ao tema.	请给主题起个名字。
+Тема «{0}» сохранена.	Theme "{0}" saved.	Тему «{0}» збережено.	Tema «{0}» guardado.	Design „{0}“ gespeichert.	Tema «{0}» guardado.	主题“{0}”已保存。
+Это не код темы. Он начинается с «atoll-theme:».	This is not a theme code. It starts with "atoll-theme:".	Це не код теми. Він починається з «atoll-theme:».	Esto no es un código de tema. Empieza por «atoll-theme:».	Das ist kein Design-Code. Er beginnt mit „atoll-theme:“.	Isto não é um código de tema. Começa por «atoll-theme:».	这不是主题代码。主题代码以“atoll-theme:”开头。
+Слишком много своих тем — удалите лишние.	Too many themes of your own — delete the ones you don't need.	Забагато власних тем — видаліть зайві.	Demasiados temas propios: elimina los que sobran.	Zu viele eigene Designs – löschen Sie überflüssige.	Demasiados temas seus — elimine os que não precisa.	自定义主题太多了——请删除不需要的。
+Тема «{0}» добавлена.	Theme "{0}" added.	Тему «{0}» додано.	Tema «{0}» añadido.	Design „{0}“ hinzugefügt.	Tema «{0}» adicionado.	主题“{0}”已添加。
+Скопировать код темы	Copy theme code	Скопіювати код теми	Copiar código del tema	Design-Code kopieren	Copiar código do tema	复制主题代码
+Код темы скопирован	Theme code copied	Код теми скопійовано	Código del tema copiado	Design-Code kopiert	Código do tema copiado	主题代码已复制
+Отправьте его другу или в Telegram-канал	Send it to a friend or to the Telegram channel	Надішліть його другові або в Telegram-канал	Envíaselo a un amigo o al canal de Telegram	Senden Sie ihn an Freunde oder an den Telegram-Kanal	Envie-o a um amigo ou ao canal do Telegram	发给朋友或 Telegram 频道
+Удалить тему	Delete theme	Видалити тему	Eliminar tema	Design löschen	Eliminar tema	删除主题
+Atoll обновился до {0}	Atoll updated to {0}	Atoll оновився до {0}	Atoll se actualizó a {0}	Atoll wurde auf {0} aktualisiert	O Atoll foi atualizado para {0}	Atoll 已更新到 {0}
+Нажмите — что нового	Click to see what's new	Натисніть — що нового	Haz clic para ver las novedades	Klicken, um Neues zu sehen	Clique para ver as novidades	点击查看新功能
+Добро пожаловать в Atoll	Welcome to Atoll	Ласкаво просимо до Atoll	Te damos la bienvenida a Atoll	Willkommen bei Atoll	Bem-vindo ao Atoll	欢迎使用 Atoll
+Остров уже наверху экрана. Выберите, как он выглядит — поменять можно в любой момент в настройках.	The island is already at the top of the screen. Choose how it looks — you can change it any time in the settings.	Острів уже вгорі екрана. Виберіть, як він виглядає — змінити можна будь-коли в налаштуваннях.	La isla ya está en la parte superior de la pantalla. Elige su aspecto: puedes cambiarlo cuando quieras en los ajustes.	Die Insel ist schon oben am Bildschirm. Wählen Sie ihr Aussehen – ändern lässt es sich jederzeit in den Einstellungen.	A ilha já está no topo do ecrã. Escolha o aspeto — pode mudá-lo a qualquer momento nas definições.	灵动岛已经在屏幕顶部。选择它的外观——随时可以在设置中更改。
+Что показывать на острове	What to show on the island	Що показувати на острові	Qué mostrar en la isla	Was die Insel zeigen soll	O que mostrar na ilha	在灵动岛上显示什么
+Сообщения Telegram, Discord, Viber…	Telegram, Discord, Viber… messages	Повідомлення Telegram, Discord, Viber…	Mensajes de Telegram, Discord, Viber…	Nachrichten von Telegram, Discord, Viber…	Mensagens do Telegram, Discord, Viber…	Telegram、Discord、Viber…的消息
+Громкость и яркость рядом с островом	Volume and brightness beside the island	Гучність і яскравість поруч з островом	Volumen y brillo junto a la isla	Lautstärke und Helligkeit neben der Insel	Volume e brilho ao lado da ilha	在灵动岛旁显示音量和亮度
+Музыка, таймер, погода, буфер обмена и заметки работают сразу — их включать не нужно.	Music, the timer, weather, the clipboard and notes work right away — nothing to turn on.	Музика, таймер, погода, буфер обміну та нотатки працюють одразу — їх вмикати не треба.	La música, el temporizador, el tiempo, el portapapeles y las notas funcionan desde el principio: no hay que activar nada.	Musik, Timer, Wetter, Zwischenablage und Notizen funktionieren sofort – nichts einzuschalten.	A música, o temporizador, a meteorologia, a área de transferência e as notas funcionam logo — não é preciso ativar nada.	音乐、计时器、天气、剪贴板和笔记开箱即用——无需开启。
+Как им пользоваться	How to use it	Як ним користуватися	Cómo usarla	So benutzen Sie sie	Como usar	如何使用
+Наведите курсор	Point at it	Наведіть курсор	Pasa el cursor	Mit der Maus darauf zeigen	Aponte o cursor	把鼠标移上去
+Остров раскроется: музыка, погода, таймер, буфер, заметки, настройки.	The island opens: music, weather, timer, clipboard, notes, settings.	Острів розкриється: музика, погода, таймер, буфер, нотатки, налаштування.	La isla se abre: música, tiempo, temporizador, portapapeles, notas, ajustes.	Die Insel öffnet sich: Musik, Wetter, Timer, Zwischenablage, Notizen, Einstellungen.	A ilha abre-se: música, meteorologia, temporizador, área de transferência, notas, definições.	灵动岛会展开：音乐、天气、计时器、剪贴板、笔记、设置。
+Смахните вверх — спрячется	Flick it up to hide	Змахніть угору — сховається	Desliza hacia arriba para ocultarla	Nach oben wischen zum Ausblenden	Deslize para cima para ocultar	向上甩动即可隐藏
+Вернуть: Ctrl + Alt + I или полоска у края экрана.	Bring it back: Ctrl + Alt + I, or the strip at the screen edge.	Повернути: Ctrl + Alt + I або смужка біля краю екрана.	Recuperarla: Ctrl + Alt + I o la tira del borde de la pantalla.	Zurückholen: Strg + Alt + I oder der Streifen am Bildschirmrand.	Trazer de volta: Ctrl + Alt + I ou a tira na margem do ecrã.	恢复：Ctrl + Alt + I，或屏幕边缘的小条。
+Перетащите файл на остров	Drop a file on the island	Перетягніть файл на острів	Arrastra un archivo a la isla	Datei auf die Insel ziehen	Arraste um ficheiro para a ilha	把文件拖到灵动岛上
+Отправить в чат, сжать фото, упаковать в ZIP или положить на полку.	Send to a chat, shrink a photo, pack into a ZIP or put on the shelf.	Надіслати в чат, стиснути фото, запакувати в ZIP або покласти на полицю.	Enviar a un chat, comprimir una foto, empaquetar en ZIP o dejar en el estante.	An einen Chat senden, Foto verkleinern, als ZIP packen oder ins Regal legen.	Enviar para um chat, comprimir uma foto, compactar em ZIP ou pôr na prateleira.	发送到聊天、压缩照片、打包为 ZIP 或放到搁架上。
+Alt + Пробел — строка команд	Alt + Space — the command bar	Alt + Пробіл — рядок команд	Alt + Espacio: la barra de comandos	Alt + Leertaste – die Befehlsleiste	Alt + Espaço — a barra de comandos	Alt + 空格——命令栏
+Запуск программ, калькулятор, «таймер 10», «напомни…».	Start programs, calculate, "timer 10", "remind…".	Запуск програм, калькулятор, «таймер 10», «нагадай…».	Abrir programas, calculadora, «temporizador 10», «recuérdame…».	Programme starten, rechnen, „Timer 10“, „erinnere…“.	Abrir programas, calculadora, «temporizador 10», «lembra…».	启动程序、计算器、“计时器 10”、“提醒…”。
+Колесо мыши над островом	Mouse wheel over the island	Колесо миші над островом	Rueda del ratón sobre la isla	Mausrad über der Insel	Roda do rato sobre a ilha	在灵动岛上滚动鼠标滚轮
+Переключает то, что он показывает: таймер, музыку, звонок.	Switches what it shows: the timer, the music, a call.	Перемикає те, що він показує: таймер, музику, дзвінок.	Cambia lo que muestra: el temporizador, la música, una llamada.	Wechselt, was sie zeigt: Timer, Musik, Anruf.	Alterna o que ela mostra: o temporizador, a música, uma chamada.	切换显示内容：计时器、音乐、通话。
+Назад	Back	Назад	Atrás	Zurück	Voltar	上一步
+Telegram-канал	Telegram channel	Telegram-канал	Canal de Telegram	Telegram-Kanal	Canal do Telegram	Telegram 频道
+Далее	Next	Далі	Siguiente	Weiter	Seguinte	下一步
+Atoll {0} — что нового	Atoll {0} — what's new	Atoll {0} — що нового	Atoll {0}: novedades	Atoll {0} – Neuigkeiten	Atoll {0} — novidades	Atoll {0}——新功能
+Исправления и мелкие улучшения.	Fixes and small improvements.	Виправлення та дрібні покращення.	Correcciones y pequeñas mejoras.	Fehlerbehebungen und kleine Verbesserungen.	Correções e pequenas melhorias.	修复与小幅改进。
+Все версии	All versions	Усі версії	Todas las versiones	Alle Versionen	Todas as versões	所有版本
+Понятно	Got it	Зрозуміло	Entendido	Verstanden	Entendi	知道了
+Файлы	Files	Файли	Archivos	Dateien	Ficheiros	文件
+Что нового	What's new	Що нового	Novedades	Neuigkeiten	Novidades	新功能
+Показывать громкость и яркость рядом с островом	Show volume and brightness beside the island	Показувати гучність і яскравість поруч з островом	Mostrar volumen y brillo junto a la isla	Lautstärke und Helligkeit neben der Insel anzeigen	Mostrar volume e brilho ao lado da ilha	在灵动岛旁显示音量和亮度
+Копирование, распаковка и другие долгие задачи — на острове	Copying, unpacking and other long jobs — on the island	Копіювання, розпакування та інші довгі завдання — на острові	Copias, descompresiones y otras tareas largas, en la isla	Kopieren, Entpacken und andere lange Aufgaben – auf der Insel	Cópias, descompactações e outras tarefas longas — na ilha	复制、解压等耗时任务——显示在灵动岛上
+Переходить на монитор, где сейчас курсор	Move to the monitor the mouse is on	Переходити на монітор, де зараз курсор	Pasar al monitor donde está el cursor	Auf den Monitor wechseln, auf dem der Mauszeiger ist	Passar para o monitor onde está o cursor	移动到鼠标所在的显示器
+Если выключить, остров будет виден на скриншотах, записи и в Zoom/Discord — стекло при этом продолжает работать. Пока работает запись NVIDIA, остров сам остаётся видимым — иначе она не пишет рабочий стол	If turned off, the island is visible in screenshots, recordings and Zoom/Discord — the glass keeps working. While NVIDIA's recorder runs, the island stays visible by itself — otherwise it wouldn't record the desktop	Якщо вимкнути, острів буде видно на знімках екрана, записі та в Zoom/Discord — скло при цьому працює далі. Поки працює запис NVIDIA, острів сам лишається видимим — інакше вона не пише робочий стіл	Si se desactiva, la isla se verá en capturas, grabaciones y Zoom/Discord; el cristal sigue funcionando. Mientras graba NVIDIA, la isla permanece visible por sí sola; si no, no grabaría el escritorio	Wenn ausgeschaltet, ist die Insel auf Screenshots, Aufnahmen und in Zoom/Discord sichtbar – das Glas funktioniert weiter. Solange die NVIDIA-Aufnahme läuft, bleibt die Insel von selbst sichtbar – sonst würde der Desktop nicht aufgenommen	Se desligar, a ilha fica visível em capturas, gravações e no Zoom/Discord — o vidro continua a funcionar. Enquanto a gravação da NVIDIA estiver ativa, a ilha mantém-se visível sozinha — caso contrário não gravaria o ambiente de trabalho	关闭后，灵动岛会出现在截图、录屏和 Zoom/Discord 中——玻璃效果仍然有效。NVIDIA 录制期间，灵动岛会自动保持可见，否则它无法录制桌面
+Проверка	Check	Перевірка	Comprobación	Prüfung	Verificação	检查
+Сбросить	Reset	Скинути	Restablecer	Zurücksetzen	Repor	重置
+Тяните за край · размер {0}%, ширина {1}	Pull an edge · size {0}%, width {1}	Тягніть за край · розмір {0}%, ширина {1}	Tira de un borde · tamaño {0}%, ancho {1}	Am Rand ziehen · Größe {0}%, Breite {1}	Puxe uma margem · tamanho {0}%, largura {1}	拖动边缘 · 大小 {0}%，宽度 {1}
+Изменить размер прямо на острове	Resize right on the island	Змінити розмір просто на острові	Cambiar el tamaño en la propia isla	Größe direkt an der Insel ändern	Redimensionar na própria ilha	直接在灵动岛上调整大小
+Сбросить размер	Reset size	Скинути розмір	Restablecer tamaño	Größe zurücksetzen	Repor tamanho	重置大小
+Батарея	Battery	Батарея	Batería	Akku	Bateria	电池
+Ничего	Nothing	Нічого	Nada	Nichts	Nada	不显示
+ПИЛЮЛЯ	THE PILL	ПІЛЮЛЯ	LA PÍLDORA	DIE PILLE	A PÍLULA	胶囊
+Свёрнутый остров можно тянуть за край: вправо — шире, вниз — крупнее. То же — правым кликом по острову.	Pull the folded island by its edge: to the right makes it wider, down makes it bigger. The same from a right-click on the island.	Згорнутий острів можна тягнути за край: праворуч — ширше, вниз — більше. Те саме — правим кліком по острову.	Tira del borde de la isla plegada: hacia la derecha, más ancha; hacia abajo, más grande. Lo mismo con clic derecho en la isla.	Die eingeklappte Insel lässt sich am Rand ziehen: nach rechts breiter, nach unten größer. Dasselbe per Rechtsklick auf die Insel.	Puxe a ilha recolhida pela margem: para a direita fica mais larga, para baixo fica maior. O mesmo com clique direito na ilha.	可拖动收起状态的灵动岛边缘：向右变宽，向下变大。右键点击灵动岛也能进入。
+В центре	In the middle	У центрі	En el centro	In der Mitte	No centro	中间
+Время	Time	Час	Hora	Uhrzeit	Hora	时间
+Время и дата	Time and date	Час і дата	Hora y fecha	Uhrzeit und Datum	Hora e data	时间和日期
+Дата	Date	Дата	Fecha	Datum	Data	日期
+Справа	On the right	Праворуч	A la derecha	Rechts	À direita	右侧
+ВКЛАДКИ	TABS	ВКЛАДКИ	PESTAÑAS	TABS	SEPARADORES	标签页
+Перетащите, чтобы поменять порядок. Нажмите, чтобы скрыть вкладку или вернуть её.	Drag to change the order. Click to hide a tab or bring it back.	Перетягніть, щоб змінити порядок. Натисніть, щоб сховати вкладку або повернути її.	Arrastra para cambiar el orden. Haz clic para ocultar una pestaña o recuperarla.	Ziehen, um die Reihenfolge zu ändern. Klicken, um einen Tab auszublenden oder zurückzuholen.	Arraste para mudar a ordem. Clique para ocultar um separador ou trazê-lo de volta.	拖动以调整顺序。点击可隐藏或恢复标签页。
+КНОПКИ НА ГЛАВНОЙ	BUTTONS ON HOME	КНОПКИ НА ГОЛОВНІЙ	BOTONES EN INICIO	SCHALTFLÄCHEN AUF START	BOTÕES NO INÍCIO	主页上的按钮
+Перетащите, чтобы поменять порядок. Нажмите, чтобы убрать кнопку или вернуть её.	Drag to change the order. Click to remove a button or bring it back.	Перетягніть, щоб змінити порядок. Натисніть, щоб прибрати кнопку або повернути її.	Arrastra para cambiar el orden. Haz clic para quitar un botón o recuperarlo.	Ziehen, um die Reihenfolge zu ändern. Klicken, um eine Schaltfläche zu entfernen oder zurückzuholen.	Arraste para mudar a ordem. Clique para remover um botão ou trazê-lo de volta.	拖动以调整顺序。点击可移除或恢复按钮。
+Выключить или включить звук	Mute or unmute	Вимкнути або ввімкнути звук	Silenciar o activar el sonido	Ton aus- oder einschalten	Silenciar ou ativar o som	静音或取消静音
+Изменить размер…	Resize…	Змінити розмір…	Cambiar tamaño…	Größe ändern…	Redimensionar…	调整大小…
+ГРОМКОСТЬ ПРОГРАММ	APP VOLUME	ГУЧНІСТЬ ПРОГРАМ	VOLUMEN DE LAS APLICACIONES	LAUTSTÄRKE DER PROGRAMME	VOLUME DAS APLICAÇÕES	各应用音量
+Пёсик	Puppy	Песик	Perrito	Hündchen	Cãozinho	小狗
+Лиса	Fox	Лисиця	Zorro	Fuchs	Raposa	狐狸
+Панда	Panda	Панда	Panda	Panda	Panda	熊猫
+Мишка	Bear	Ведмедик	Osito	Bär	Ursinho	小熊
+Лягушка	Frog	Жабка	Rana	Frosch	Sapo	青蛙
+Пингвин	Penguin	Пінгвін	Pingüino	Pinguin	Pinguim	企鹅
+Цыплёнок	Chick	Курча	Pollito	Küken	Pintinho	小鸡
+Хрюша	Piggy	Хрюша	Cerdito	Schweinchen	Porquinho	小猪
+Коала	Koala	Коала	Koala	Koala	Coala	考拉
+Мышка	Mouse	Мишка	Ratón	Maus	Ratinho	小老鼠
+Пчёлка	Bee	Бджілка	Abeja	Biene	Abelha	小蜜蜂
+Осьминог	Octopus	Восьминіг	Pulpo	Krake	Polvo	章鱼
+Грибочек	Mushroom	Грибочок	Seta	Pilz	Cogumelo	小蘑菇
+Кактус	Cactus	Кактус	Cactus	Kaktus	Cato	仙人掌
+Пришелец	Alien	Прибулець	Alienígena	Alien	Alienígena	外星人
+Летучая мышь	Bat	Кажан	Murciélago	Fledermaus	Morcego	蝙蝠
+Луна	Moon	Місяць	Luna	Mond	Lua	月亮
+Солнышко	Sun	Сонечко	Sol	Sonne	Sol	太阳
+Огонёк	Flame	Вогник	Llama	Flamme	Chama	小火苗
+Капелька	Droplet	Крапелька	Gotita	Tropfen	Gotinha	小水滴
+Сердечко	Heart	Сердечко	Corazón	Herz	Coração	爱心
+Тыква	Pumpkin	Гарбуз	Calabaza	Kürbis	Abóbora	南瓜
+Без персонажа	No character	Без персонажа	Sin personaje	Keine Figur	Sem personagem	无角色
+Показывать звонок Discord на острове	Show a Discord call on the island	Показувати дзвінок Discord на острові	Mostrar la llamada de Discord en la isla	Discord-Anruf auf der Insel anzeigen	Mostrar a chamada do Discord na ilha	在灵动岛上显示 Discord 通话
+Системный	System	Системний	Del sistema	System	Do sistema	系统默认
+ФОРМА И ВИД	SHAPE AND LOOK	ФОРМА І ВИГЛЯД	FORMA Y ASPECTO	FORM UND AUSSEHEN	FORMA E ASPETO	形状与外观
+Скругление углов	Corner rounding	Заокруглення кутів	Redondeo de esquinas	Eckenrundung	Arredondamento dos cantos	圆角
+Прозрачность в покое	See-through when idle	Прозорість у спокої	Transparencia en reposo	Durchsichtig im Ruhezustand	Transparência em repouso	空闲时透明度
+нет	off	немає	no	aus	não	关
+Тень под островом	Shadow under the island	Тінь під островом	Sombra bajo la isla	Schatten unter der Insel	Sombra por baixo da ilha	灵动岛下方阴影
+Шрифт	Font	Шрифт	Fuente	Schrift	Tipo de letra	字体
+ЧАСЫ, РАСКРЫТИЕ, ЗВУК	CLOCK, OPENING, SOUND	ГОДИННИК, РОЗКРИТТЯ, ЗВУК	RELOJ, APERTURA, SONIDO	UHR, ÖFFNEN, TON	RELÓGIO, ABERTURA, SOM	时钟、展开、声音
+12-часовой формат времени	12-hour clock	12-годинний формат часу	Reloj de 12 horas	12-Stunden-Format	Relógio de 12 horas	12 小时制
+Показывать секунды	Show seconds	Показувати секунди	Mostrar segundos	Sekunden anzeigen	Mostrar segundos	显示秒
+Задержка раскрытия при наведении	Delay before opening on hover	Затримка розкриття при наведенні	Retraso al abrir al pasar el cursor	Verzögerung beim Öffnen per Mauszeiger	Atraso ao abrir com o cursor	悬停展开延迟
+{0} мс	{0} ms	{0} мс	{0} ms	{0} ms	{0} ms	{0} 毫秒
+Звук таймера и напоминаний	Sound for the timer and reminders	Звук таймера та нагадувань	Sonido del temporizador y los recordatorios	Ton für Timer und Erinnerungen	Som do temporizador e dos lembretes	计时器和提醒的声音
+Голос Gemini	Gemini voice	Голос Gemini	Voz de Gemini	Gemini-Stimme	Voz do Gemini	Gemini 语音
+Голос	Voice	Голос	Voz	Stimme	Voz	语音
+Голосовой диалог Gemini Live	Voice chat with Gemini Live	Голосовий діалог Gemini Live	Conversación por voz con Gemini Live	Sprachdialog mit Gemini Live	Conversa por voz com o Gemini Live	与 Gemini Live 语音对话
+ГОЛОСОВОЙ АССИСТЕНТ · GEMINI LIVE	VOICE ASSISTANT · GEMINI LIVE	ГОЛОСОВИЙ АСИСТЕНТ · GEMINI LIVE	ASISTENTE DE VOZ · GEMINI LIVE	SPRACHASSISTENT · GEMINI LIVE	ASSISTENTE DE VOZ · GEMINI LIVE	语音助手 · GEMINI LIVE
+API-ключ Gemini	Gemini API key	API-ключ Gemini	Clave de API de Gemini	Gemini-API-Schlüssel	Chave de API do Gemini	Gemini API 密钥
+Если поле пустое, используется GEMINI_API_KEY.	If empty, GEMINI_API_KEY is used.	Якщо поле порожнє, використовується GEMINI_API_KEY.	Si está vacío, se usa GEMINI_API_KEY.	Wenn leer, wird GEMINI_API_KEY verwendet.	Se estiver vazio, é usada a GEMINI_API_KEY.	留空则使用 GEMINI_API_KEY。
+Громкость ИИ-ассистента	AI assistant volume	Гучність ШІ-асистента	Volumen del asistente de IA	Lautstärke des KI-Assistenten	Volume do assistente de IA	AI 助手音量

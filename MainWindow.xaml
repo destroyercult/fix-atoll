@@ -1,0 +1,1297 @@
+<Window x:Class="DynamicIsland.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:DynamicIsland.Views"
+        Title="Atoll"
+        Width="900" Height="720"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize" ShowActivated="False"
+        FontFamily="Segoe UI Variable Text, Segoe UI" Foreground="{DynamicResource Fg}"
+        TextOptions.TextFormattingMode="Display" UseLayoutRounding="True">
+
+  <Grid x:Name="Root">
+
+    <!-- shown after a swipe up: hover / click / pull down to bring the island back -->
+    <Grid x:Name="Handle" Width="150" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top"
+          Background="#01000000" Visibility="Collapsed" Cursor="Hand"
+          MouseEnter="Handle_MouseEnter" MouseLeave="Handle_MouseLeave"
+          MouseLeftButtonDown="Handle_MouseLeftButtonDown" MouseMove="Handle_MouseMove">
+      <Border x:Name="HandlePill" Width="56" Height="6" CornerRadius="3" VerticalAlignment="Top" Margin="0,3,0,0"
+              Background="{DynamicResource IslandBg}" BorderBrush="{DynamicResource Fg3}" BorderThickness="0.8"
+              Opacity="0.85"/>
+    </Grid>
+
+    <!-- The island's shadow, drawn apart from the island and kept as a cached picture: the character and
+         the clock can change inside the island without the shadow (a big blur) being computed again. -->
+    <Canvas x:Name="ShadowHost" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Top"
+            Width="200" Height="36" Margin="0,8,0,0" RenderTransformOrigin="0.5,0"
+            Opacity="{Binding Opacity, ElementName=Island}" Visibility="{Binding Visibility, ElementName=Island}">
+      <Canvas.CacheMode><BitmapCache/></Canvas.CacheMode>
+      <Path x:Name="IslandShadowPath" Fill="Black">
+        <Path.Effect>
+          <DropShadowEffect x:Name="IslandShadow" BlurRadius="34" ShadowDepth="6" Opacity="0.38" Color="Black" Direction="270"/>
+        </Path.Effect>
+      </Path>
+    </Canvas>
+
+    <!-- The island. Its body is a Path rebuilt every frame while it moves, so the outline can ripple like liquid. -->
+    <Border x:Name="Island"
+            Background="Transparent"
+            Width="200" Height="36"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0"
+            RenderTransformOrigin="0.5,0"
+            MouseEnter="Island_MouseEnter" MouseLeave="Island_MouseLeave"
+            PreviewMouseLeftButtonDown="Island_PreviewMouseLeftButtonDown"
+            PreviewMouseMove="Island_PreviewMouseMove"
+            PreviewMouseLeftButtonUp="Island_PreviewMouseLeftButtonUp"
+            PreviewMouseWheel="Island_PreviewMouseWheel"
+            SizeChanged="Island_SizeChanged"
+            AllowDrop="True" DragEnter="Island_DragEnter" DragLeave="Island_DragLeave" Drop="Island_Drop">
+      <Border.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform x:Name="IslandScale"/>
+          <SkewTransform x:Name="IslandSkew"/>
+          <TranslateTransform x:Name="IslandShift"/>
+        </TransformGroup>
+      </Border.RenderTransform>
+      <Border.ContextMenu>
+        <ContextMenu x:Name="IslandMenu">
+          <MenuItem Header="Спрятать (смахнуть вверх)" Click="HideIsland_Click"/>
+          <MenuItem Header="Выровнять по центру" Click="ResetPosition_Click"/>
+          <MenuItem Header="Изменить размер…" Click="EditSize_Click"/>
+          <MenuItem Header="Сменить тему" InputGestureText="Ctrl+Alt+T" Click="ToggleTheme_Click"/>
+          <MenuItem Header="Настройки" Click="OpenSettings_Click"/>
+          <Separator/>
+          <MenuItem Header="Выход" Click="Exit_Click"/>
+        </ContextMenu>
+      </Border.ContextMenu>
+
+      <Grid x:Name="IslandBody">
+      <!-- body: tint + rim light (the colour-split effect plays on this grid when the island opens) -->
+      <!-- on a Canvas: the outline may bulge outside the box (reach, ears) without being clipped -->
+      <Canvas IsHitTestVisible="False">
+        <!-- frosted glass: what's behind the island, blurred, clipped to its shape -->
+        <Canvas x:Name="FrostHost" Visibility="Collapsed">
+          <Canvas.CacheMode><BitmapCache/></Canvas.CacheMode>
+          <Image x:Name="Frost" Stretch="Fill">
+            <Image.Effect>
+              <BlurEffect Radius="36" KernelType="Gaussian" RenderingBias="Performance"/>
+            </Image.Effect>
+          </Image>
+        </Canvas>
+        <!-- your own photo (Settings > Appearance > Themes), under the tint -->
+        <Canvas x:Name="PhotoHost" Visibility="Collapsed">
+          <Image x:Name="PhotoImage" Stretch="UniformToFill"/>
+        </Canvas>
+        <Path x:Name="IslandShape" Fill="{DynamicResource IslandBg}" Stroke="{DynamicResource GlassRim}" StrokeThickness="1"/>
+        <!-- the animated season (spring, summer, autumn, winter themes) -->
+        <v:SeasonView x:Name="Season" Visibility="Collapsed" IsHitTestVisible="False"/>
+        <Path x:Name="IslandShine" Fill="{DynamicResource GlassShine}" IsHitTestVisible="False"/>
+        <!-- idle shimmer: coloured light seeping into the island from its lower edge (clipped to the shape) -->
+        <Canvas x:Name="AuraHost" Visibility="Collapsed">
+          <Rectangle x:Name="AuraFill">
+            <Rectangle.Effect><BlurEffect Radius="14" RenderingBias="Performance"/></Rectangle.Effect>
+          </Rectangle>
+        </Canvas>
+        <Path x:Name="AuraLine" StrokeThickness="2" Visibility="Collapsed" Opacity="0.55"/>
+      </Canvas>
+
+      <Grid x:Name="IslandContent">
+
+        <!-- ================= COMPACT ================= -->
+        <StackPanel x:Name="LiveDots" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"
+                    Margin="0,30,0,0" IsHitTestVisible="False" Visibility="Collapsed"/>
+        <Grid x:Name="CompactView" Height="36" VerticalAlignment="Top" Margin="15,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+            <!-- live activity icon (timer ring, download, Discord, focus, calendar…) -->
+            <Grid x:Name="LiveSlot" Width="22" Height="22" Visibility="Collapsed">
+              <Ellipse x:Name="LiveRingBg" Stroke="{DynamicResource TrackBg}" StrokeThickness="2.5"/>
+              <Path x:Name="LiveRing" Stroke="{DynamicResource Accent}" StrokeThickness="2.5"
+                    StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+              <TextBlock x:Name="LiveIcon" FontFamily="{StaticResource IconFont}" FontSize="11"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <StackPanel x:Name="Eyes" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+              <StackPanel.RenderTransform>
+                <TransformGroup>
+                  <ScaleTransform x:Name="EyesScale"/>
+                  <TranslateTransform x:Name="EyesShift"/>
+                </TransformGroup>
+              </StackPanel.RenderTransform>
+              <!-- the character: drawn and animated in code, see Views/CharacterView.cs -->
+              <v:CharacterView x:Name="Character"/>
+            </StackPanel>
+            <Border x:Name="MiniArt" Width="22" Height="22" CornerRadius="7" Margin="6,0,0,0" Background="{DynamicResource ChipBg}"
+                    Visibility="Collapsed"/>
+            <Ellipse x:Name="RecDot" Width="10" Height="10" Fill="{DynamicResource Danger}" Visibility="Collapsed"/>
+          </StackPanel>
+
+          <TextBlock x:Name="CompactTime" Grid.Column="1" Text="00:00" FontSize="13" FontWeight="SemiBold"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                     MaxWidth="300" TextTrimming="CharacterEllipsis"/>
+          <!-- karaoke: the line being sung, whole (the island sizes itself to it) -->
+          <v:KaraokeView x:Name="Karaoke" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+
+          <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+            <!-- who uses the mic / camera right now (like the iOS dots) -->
+            <Ellipse x:Name="MicDot" Width="7" Height="7" Fill="#FF9F0A" Margin="0,0,5,0" Visibility="Collapsed"/>
+            <Ellipse x:Name="CamDot" Width="7" Height="7" Fill="#30D158" Margin="0,0,5,0" Visibility="Collapsed"/>
+            <Border x:Name="UnreadBadge" Background="{DynamicResource AccentBlue}" CornerRadius="8" Padding="6,1"
+                    Margin="0,0,6,0" Visibility="Collapsed">
+              <TextBlock x:Name="UnreadText" FontSize="10.5" FontWeight="SemiBold" Foreground="White"/>
+            </Border>
+          <Grid VerticalAlignment="Center">
+            <StackPanel x:Name="CompactWeather" Orientation="Horizontal">
+              <TextBlock x:Name="CompactWeatherIcon" FontFamily="{StaticResource SymbolFont}" FontSize="13"
+                         Foreground="{DynamicResource Warm}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+              <TextBlock x:Name="CompactTemp" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel x:Name="EqBars" Orientation="Horizontal" Visibility="Collapsed" Height="16">
+              <Rectangle Width="3" Height="16" RadiusX="1.5" RadiusY="1.5" Fill="{DynamicResource Accent}" Margin="1,0" RenderTransformOrigin="0.5,0.5"><Rectangle.RenderTransform><ScaleTransform ScaleY="0.4"/></Rectangle.RenderTransform></Rectangle>
+              <Rectangle Width="3" Height="16" RadiusX="1.5" RadiusY="1.5" Fill="{DynamicResource Accent}" Margin="1,0" RenderTransformOrigin="0.5,0.5"><Rectangle.RenderTransform><ScaleTransform ScaleY="0.4"/></Rectangle.RenderTransform></Rectangle>
+              <Rectangle Width="3" Height="16" RadiusX="1.5" RadiusY="1.5" Fill="{DynamicResource Accent}" Margin="1,0" RenderTransformOrigin="0.5,0.5"><Rectangle.RenderTransform><ScaleTransform ScaleY="0.4"/></Rectangle.RenderTransform></Rectangle>
+              <Rectangle Width="3" Height="16" RadiusX="1.5" RadiusY="1.5" Fill="{DynamicResource Accent}" Margin="1,0" RenderTransformOrigin="0.5,0.5"><Rectangle.RenderTransform><ScaleTransform ScaleY="0.4"/></Rectangle.RenderTransform></Rectangle>
+            </StackPanel>
+          </Grid>
+          </StackPanel>
+        </Grid>
+
+        <!-- ================= TOAST ================= -->
+        <Grid x:Name="ToastView" Height="58" VerticalAlignment="Top" Margin="12,0,18,0" Visibility="Collapsed"
+              Opacity="0" Cursor="Hand" MouseLeftButtonUp="Toast_Click" Background="Transparent">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Border x:Name="ToastBadge" Width="36" Height="36" CornerRadius="18" Background="{DynamicResource ChipBg}">
+            <TextBlock x:Name="ToastIcon" FontFamily="{StaticResource IconFont}" FontSize="15"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </Border>
+          <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+            <TextBlock x:Name="ToastTitle" FontSize="13" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+            <TextBlock x:Name="ToastText" Style="{StaticResource Muted}" TextTrimming="CharacterEllipsis"/>
+          </StackPanel>
+        </Grid>
+
+        <!-- ================= CLAUDE CODE ================= -->
+        <Grid x:Name="ClaudeView" Width="512" Margin="16,14,16,16" VerticalAlignment="Top"
+              Visibility="Collapsed" Opacity="0">
+          <StackPanel>
+            <DockPanel>
+              <TextBlock x:Name="ClaudeAgentIcon" Text="✳" FontSize="18" Foreground="{DynamicResource ClaudeOrange}" VerticalAlignment="Center"/>
+              <TextBlock x:Name="ClaudeAgentName" Text="Claude Code" FontSize="14" FontWeight="SemiBold" Margin="8,0,0,0" VerticalAlignment="Center"/>
+              <TextBlock x:Name="ClaudeProject" Style="{StaticResource Muted}" Margin="8,1,0,0" VerticalAlignment="Center"/>
+              <TextBlock x:Name="ClaudeQueue" Style="{StaticResource Muted}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </DockPanel>
+            <TextBlock x:Name="ClaudeTitle" FontSize="13" Margin="0,10,0,6" TextWrapping="Wrap"/>
+            <Border Style="{StaticResource Tile}" Padding="12,10">
+              <ScrollViewer MaxHeight="170" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="ClaudeDetails" FontFamily="Cascadia Mono, Consolas" FontSize="12"
+                           TextWrapping="Wrap" Foreground="{DynamicResource Fg}"/>
+              </ScrollViewer>
+            </Border>
+            <StackPanel x:Name="ClaudeAskButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+              <Button Style="{StaticResource GhostPill}" Content="В терминале" Margin="0,0,8,0" Click="ClaudeTerminal_Click"/>
+              <Button Style="{StaticResource DangerPill}" Content="Запретить" Margin="0,0,8,0" Click="ClaudeDeny_Click"/>
+              <Button x:Name="ClaudeAllowButton" Style="{StaticResource AccentPill}" Content="Разрешить" Click="ClaudeAllow_Click"/>
+            </StackPanel>
+            <StackPanel x:Name="ClaudeInfoButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+              <Button Style="{StaticResource Pill}" Content="Копировать" Margin="0,0,8,0" Click="ClaudeCopy_Click"/>
+              <Button Style="{StaticResource GhostPill}" Content="Закрыть" Click="ClaudeClose_Click"/>
+            </StackPanel>
+          </StackPanel>
+        </Grid>
+
+        <!-- ================= COMMAND BAR (Alt+Space) ================= -->
+        <Grid x:Name="CommandView" Width="560" Margin="16,12,16,14" VerticalAlignment="Top" Visibility="Collapsed" Opacity="0">
+          <StackPanel>
+            <Grid Height="38">
+              <TextBlock Text="&#xE721;" FontFamily="{StaticResource IconFont}" FontSize="16"
+                         Foreground="{DynamicResource Fg3}" VerticalAlignment="Center" Margin="6,0,0,0"/>
+              <TextBlock x:Name="CommandHint" Text="Приложение, 2+2, таймер 10, напомни…, > команда"
+                         Foreground="{DynamicResource Fg3}" FontSize="15" Margin="36,0,0,0"
+                         IsHitTestVisible="False" VerticalAlignment="Center"/>
+              <TextBox x:Name="CmdBarBox" Background="Transparent" BorderThickness="0" Foreground="{DynamicResource Fg}"
+                       CaretBrush="{DynamicResource Fg}" SelectionBrush="{DynamicResource AccentBlue}" FontSize="16"
+                       Margin="33,0,4,0" VerticalContentAlignment="Center"
+                       TextChanged="CmdBarBox_TextChanged" PreviewKeyDown="CmdBarBox_PreviewKeyDown"/>
+            </Grid>
+            <StackPanel x:Name="CommandResults" Margin="0,6,0,0"/>
+          </StackPanel>
+        </Grid>
+
+        <!-- ================= FILE DROP ================= -->
+        <Grid x:Name="DropView" Width="500" Margin="16,14,16,16" VerticalAlignment="Top" Visibility="Collapsed" Opacity="0">
+          <StackPanel>
+            <DockPanel>
+              <Border Width="40" Height="40" CornerRadius="12" Background="{DynamicResource ChipBg}">
+                <TextBlock x:Name="DropIcon" Text="&#xE8E5;" FontFamily="{StaticResource IconFont}" FontSize="17"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              </Border>
+              <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
+                <TextBlock x:Name="DropTitle" Text="Отпустите файл на острове" FontSize="14" FontWeight="SemiBold"
+                           TextTrimming="CharacterEllipsis"/>
+                <TextBlock x:Name="DropSubtitle" Style="{StaticResource Muted}" TextTrimming="CharacterEllipsis"
+                           Text="Поделиться, сжать в ZIP, конвертировать картинку"/>
+              </StackPanel>
+            </DockPanel>
+            <WrapPanel x:Name="DropActions" Margin="0,12,0,0" Visibility="Collapsed"/>
+          </StackPanel>
+        </Grid>
+
+        <!-- ================= EXPANDED ================= -->
+        <Grid x:Name="ExpandedView" Opacity="0" Visibility="Collapsed" Margin="14,10,14,14" VerticalAlignment="Top">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+
+          <!-- header: tabs, clock, settings, hide -->
+          <Grid x:Name="TabArea" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"
+                MouseEnter="TabArea_MouseEnter" MouseLeave="TabArea_MouseLeave">
+          <!-- calm state: dots + the page name; icons appear under the cursor -->
+          <StackPanel x:Name="PageDots" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+            <StackPanel x:Name="DotsRow" Orientation="Horizontal" VerticalAlignment="Center"/>
+            <TextBlock x:Name="PageTitle" FontSize="13.5" FontWeight="SemiBold" Margin="12,0,0,1" VerticalAlignment="Center"/>
+          </StackPanel>
+          <StackPanel x:Name="TabStrip" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel.RenderTransform><TranslateTransform x:Name="TabStripShift"/></StackPanel.RenderTransform>
+            <RadioButton x:Name="TabHome" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Главная" Tag="&#xE80F;" IsChecked="True" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabMusic" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Музыка" Tag="&#xE8D6;" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabWeather" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Погода" Tag="&#xE706;" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabChat" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Чат" Tag="&#xE8BD;" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabTimer" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Таймер" Tag="&#xE916;" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabClip" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Буфер" Tag="&#xE77F;" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabNotes" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Заметки" Tag="&#xE70B;" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabCalendar" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Календарь" Tag="&#xE787;" Checked="Tab_Checked"/>
+            <RadioButton x:Name="TabSystem" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Система" Tag="&#xE7FC;" Checked="Tab_Checked"/>
+          </StackPanel>
+          </Grid>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <v:CharacterView x:Name="MenuBuddy" VerticalAlignment="Center" Margin="0,0,12,0" Visibility="Collapsed"
+                             ToolTip="Нажми на меня"/>
+            <TextBlock x:Name="ExpandedTime" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <RadioButton x:Name="TabSettings" Style="{StaticResource TabButton}" GroupName="Tabs" Content="Настройки" Tag="&#xE713;" Checked="Tab_Checked"/>
+            <Button Style="{StaticResource IconButton}" Width="30" Height="30" FontSize="12" Content="&#xE70E;"
+                    ToolTip="Спрятать (или смахните вверх)" Click="HideIsland_Click"/>
+          </StackPanel>
+
+          <Grid Grid.Row="1" Margin="0,10,0,0" x:Name="Pages">
+
+            <!-- ======== HOME ======== -->
+            <StackPanel x:Name="HomePage" Width="572">
+              <WrapPanel x:Name="ActionsGrid"/>
+              <Grid x:Name="HomeStrips" Margin="4,6,4,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="HomeMusic" Style="{StaticResource Tile}" Padding="10" Cursor="Hand"
+                        MouseLeftButtonUp="HomeMusic_Click">
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border x:Name="HomeArt" Width="44" Height="44" CornerRadius="12" Background="{DynamicResource ChipBg}">
+                      <TextBlock x:Name="HomeArtPlaceholder" Text="&#xE8D6;" FontFamily="{StaticResource IconFont}" FontSize="16"
+                                 Foreground="{DynamicResource Fg3}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="12,0,8,0" VerticalAlignment="Center">
+                      <TextBlock x:Name="HomeTrack" Text="Ничего не играет" FontSize="13" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                      <TextBlock x:Name="HomeArtist" Style="{StaticResource Muted}" TextTrimming="CharacterEllipsis"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                      <Button Style="{StaticResource IconButton}" Width="32" Height="32" FontSize="13" Content="&#xE892;" Click="Prev_Click"/>
+                      <Button x:Name="HomePlay" Style="{StaticResource IconButton}" Width="34" Height="34" FontSize="15" Content="&#xE768;" Click="PlayPause_Click"/>
+                      <Button Style="{StaticResource IconButton}" Width="32" Height="32" FontSize="13" Content="&#xE893;" Click="Next_Click"/>
+                    </StackPanel>
+                  </Grid>
+                </Border>
+
+                <Border x:Name="HomeWeather" Grid.Column="1" Style="{StaticResource Tile}" Width="176" Margin="8,0,0,0"
+                        Padding="12,10" Cursor="Hand" MouseLeftButtonUp="HomeWeather_Click">
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto"/>
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="HomeWIcon" FontFamily="{StaticResource SymbolFont}" FontSize="24"
+                               Foreground="{DynamicResource Warm}" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                      <TextBlock x:Name="HomeWTemp" Text="—" FontSize="18" FontFamily="{StaticResource DisplayFont}"/>
+                      <TextBlock x:Name="HomeWDesc" Style="{StaticResource Muted}" TextTrimming="CharacterEllipsis" Text="Укажите город"/>
+                    </StackPanel>
+                  </Grid>
+                </Border>
+              </Grid>
+              <!-- apps you dropped here: click to open -->
+              <Border x:Name="HomeApps" Style="{StaticResource Tile}" Margin="4,8,4,0" Padding="10,8,10,6" MinHeight="64">
+                <StackPanel>
+                  <WrapPanel x:Name="AppsRow" VerticalAlignment="Center"/>
+                  <!-- "+": find an installed app by name -->
+                  <StackPanel x:Name="AppSearchPanel" Visibility="Collapsed" Margin="0,8,0,2">
+                    <Grid>
+                      <TextBox x:Name="AppSearchBox" Style="{StaticResource SoftBox}" Height="34"
+                               TextChanged="AppSearch_TextChanged" PreviewKeyDown="AppSearch_KeyDown"/>
+                      <TextBlock x:Name="AppSearchPlaceholder" Text="Название приложения…" Style="{StaticResource Muted}" FontSize="12.5"
+                                 Margin="13,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                    </Grid>
+                    <WrapPanel x:Name="AppSearchResults" Margin="0,8,0,0"/>
+                  </StackPanel>
+                </StackPanel>
+              </Border>
+            </StackPanel>
+
+            <!-- ======== MUSIC ======== -->
+            <Grid x:Name="MusicPage" Width="640" Visibility="Collapsed">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="214"/>
+              </Grid.ColumnDefinitions>
+
+              <Border Style="{StaticResource Tile}" Margin="0,0,10,0">
+                <StackPanel>
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto"/>
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border x:Name="ArtBox" Width="72" Height="72" CornerRadius="16" Background="{DynamicResource ChipBg}">
+                      <Border.Effect>
+                        <DropShadowEffect BlurRadius="14" ShadowDepth="2" Opacity="0.3"/>
+                      </Border.Effect>
+                      <TextBlock x:Name="ArtPlaceholder" Text="&#xE8D6;" FontFamily="{StaticResource IconFont}" FontSize="24"
+                                 Foreground="{DynamicResource Fg3}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center">
+                      <TextBlock x:Name="TrackTitle" Text="Ничего не играет" FontSize="16" FontWeight="SemiBold"
+                                 TextTrimming="CharacterEllipsis"/>
+                      <TextBlock x:Name="TrackArtist" Text="Включите музыку в любом плеере" FontSize="12.5"
+                                 Foreground="{DynamicResource Fg2}" TextTrimming="CharacterEllipsis" Margin="0,3,0,0"/>
+                      <TextBlock x:Name="TrackSource" FontSize="11" Foreground="{DynamicResource Fg3}"
+                                 TextTrimming="CharacterEllipsis" Margin="0,3,0,0"/>
+                    </StackPanel>
+                  </Grid>
+
+                  <Grid Margin="0,14,0,0">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="40"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="44"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="Elapsed" Text="0:00" FontSize="10.5" Foreground="{DynamicResource Fg3}" VerticalAlignment="Center"/>
+                    <Border x:Name="ProgressTrack" Grid.Column="1" Height="16" Background="Transparent" Cursor="Hand"
+                            MouseLeftButtonDown="ProgressTrack_MouseLeftButtonDown">
+                      <Grid VerticalAlignment="Center" Height="5">
+                        <Border Background="{DynamicResource TrackBg}" CornerRadius="2.5"/>
+                        <Border x:Name="ProgressFill" Background="{DynamicResource Fg}" CornerRadius="2.5"
+                                HorizontalAlignment="Left" Width="0"/>
+                      </Grid>
+                    </Border>
+                    <TextBlock x:Name="Remaining" Grid.Column="2" Text="-0:00" FontSize="10.5" Foreground="{DynamicResource Fg3}"
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                  </Grid>
+
+                  <!-- a wave that moves with the sound -->
+                  <Path x:Name="MusicWave" Height="26" Margin="0,8,0,0" StrokeThickness="2" Stretch="None"
+                        Stroke="{DynamicResource Accent}" StrokeLineJoin="Round" IsHitTestVisible="False" ClipToBounds="True"/>
+
+                  <Grid Margin="0,4,0,0">
+                    <Button x:Name="RepeatButton" Style="{StaticResource IconButton}" Content="&#xE8EE;" HorizontalAlignment="Left"
+                            ToolTip="Повтор" Click="Repeat_Click" Opacity="0.55"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                      <Button Style="{StaticResource IconButton}" Content="&#xE892;" Click="Prev_Click"/>
+                      <Button x:Name="PlayPauseButton" Style="{StaticResource PlayButton}" Content="&#xE768;"
+                              Margin="18,0" Click="PlayPause_Click"/>
+                      <Button Style="{StaticResource IconButton}" Content="&#xE893;" Click="Next_Click"/>
+                    </StackPanel>
+                    <Button x:Name="LikeButton" Style="{StaticResource IconButton}" Content="&#xEB51;" HorizontalAlignment="Right"
+                            ToolTip="В избранное" Click="Like_Click"/>
+                  </Grid>
+
+                  <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="&#xE767;" FontFamily="{StaticResource IconFont}" FontSize="13"
+                               Foreground="{DynamicResource Fg2}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <Slider x:Name="VolumeSlider" Grid.Column="1" Style="{StaticResource SoftSlider}"
+                            ValueChanged="VolumeSlider_ValueChanged"/>
+                    <TextBlock x:Name="VolumeLabel" Grid.Column="2" Style="{StaticResource Muted}" FontSize="11"
+                               Margin="10,0,0,0" VerticalAlignment="Center" MinWidth="70"/>
+                  </Grid>
+                </StackPanel>
+              </Border>
+
+              <Border Grid.Column="1" Style="{StaticResource Tile}">
+                <Grid>
+                  <StackPanel x:Name="LyricsPanel" VerticalAlignment="Center" Visibility="Collapsed">
+                    <TextBlock x:Name="LyricPrev" FontSize="11.5" Foreground="{DynamicResource Fg3}" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock x:Name="LyricCur" FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap" MaxHeight="64" Margin="0,8">
+                      <TextBlock.RenderTransform>
+                        <TranslateTransform x:Name="LyricCurShift"/>
+                      </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBlock x:Name="LyricNext" FontSize="12" Foreground="{DynamicResource Fg2}" TextWrapping="Wrap" MaxHeight="34"/>
+                    <TextBlock x:Name="LyricNext2" FontSize="11.5" Foreground="{DynamicResource Fg3}" TextTrimming="CharacterEllipsis" Margin="0,4,0,0"/>
+                  </StackPanel>
+                  <!-- liked tracks (the heart), shown instead of the lyrics -->
+                  <DockPanel x:Name="LikedPanel" Visibility="Collapsed">
+                    <TextBlock DockPanel.Dock="Top" Text="Избранное" Style="{StaticResource Muted}" Margin="0,0,0,6"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="150">
+                      <StackPanel x:Name="LikedList"/>
+                    </ScrollViewer>
+                  </DockPanel>
+                  <Button x:Name="LikedToggle" Style="{StaticResource IconButton}" Content="&#xE728;" FontSize="12" Width="26" Height="26"
+                          HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-6,-6,0" ToolTip="Избранное" Click="LikedToggle_Click"/>
+                  <StackPanel x:Name="LyricsEmpty" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="&#xE8D2;" FontFamily="{StaticResource IconFont}" FontSize="20"
+                               Foreground="{DynamicResource Fg3}" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="LyricsEmptyText" Text="Здесь появятся слова песни" Style="{StaticResource Muted}"
+                               TextAlignment="Center" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                  </StackPanel>
+                </Grid>
+              </Border>
+            </Grid>
+
+            <!-- ======== WEATHER ======== -->
+            <Grid x:Name="WeatherPage" Width="680" Visibility="Collapsed">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+
+              <DockPanel Margin="2,0,0,10">
+                <TextBlock Text="Город" Style="{StaticResource Muted}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="CityBox" Style="{StaticResource SoftBox}" Width="180" Height="30" KeyDown="CityBox_KeyDown"/>
+                <Button Style="{StaticResource IconButton}" Content="&#xE72C;" FontSize="13" Width="30" Height="30"
+                        Margin="6,0,0,0" ToolTip="Обновить" Click="RefreshWeather_Click"/>
+                <TextBlock x:Name="WeatherStatus" Style="{StaticResource Muted}" VerticalAlignment="Center"
+                           Margin="10,0,0,0" TextTrimming="CharacterEllipsis"/>
+              </DockPanel>
+
+              <UniformGrid Grid.Row="1" Columns="4" Rows="2">
+                <!-- now -->
+                <Border Style="{StaticResource Tile}" Margin="0,0,5,5" Height="124">
+                  <StackPanel>
+                    <TextBlock x:Name="NowPlace" Style="{StaticResource Caption}" Text="СЕЙЧАС" TextTrimming="CharacterEllipsis"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                      <TextBlock x:Name="NowIcon" FontFamily="{StaticResource SymbolFont}" FontSize="22"
+                                 Foreground="{DynamicResource Warm}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                      <TextBlock x:Name="NowTemp" Text="—" FontSize="30" FontWeight="Light" FontFamily="{StaticResource DisplayFont}"/>
+                    </StackPanel>
+                    <TextBlock x:Name="NowDesc" FontSize="12" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock x:Name="NowFeels" Style="{StaticResource Muted}" FontSize="11" Margin="0,2,0,0"/>
+                  </StackPanel>
+                </Border>
+
+                <!-- wind -->
+                <Border Style="{StaticResource Tile}" Margin="5,0,5,5" Height="124">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ВЕТЕР"/>
+                    <Grid Margin="0,6,0,0">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <Grid Width="62" Height="62">
+                        <Ellipse Stroke="{DynamicResource TrackBg}" StrokeThickness="2"/>
+                        <TextBlock Text="С" FontSize="8.5" Foreground="{DynamicResource Fg3}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,0,0"/>
+                        <TextBlock Text="Ю" FontSize="8.5" Foreground="{DynamicResource Fg3}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,3"/>
+                        <Path Data="M 31,9 L 35.5,26 L 31,23 L 26.5,26 Z M 30.2,23 L 31.8,23 L 31.8,53 L 30.2,53 Z"
+                              Fill="{DynamicResource Fg}" RenderTransformOrigin="0.5,0.5">
+                          <Path.RenderTransform>
+                            <RotateTransform x:Name="WindArrow"/>
+                          </Path.RenderTransform>
+                        </Path>
+                      </Grid>
+                      <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                        <TextBlock x:Name="WindSpeed" Text="—" FontSize="17" FontFamily="{StaticResource DisplayFont}"/>
+                        <TextBlock x:Name="WindDir" Style="{StaticResource Muted}" FontSize="11"/>
+                      </StackPanel>
+                    </Grid>
+                  </StackPanel>
+                </Border>
+
+                <!-- humidity -->
+                <Border Style="{StaticResource Tile}" Margin="5,0,5,5" Height="124">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ВЛАЖНОСТЬ"/>
+                    <TextBlock x:Name="HumidityText" Text="—" FontSize="26" FontFamily="{StaticResource DisplayFont}" Margin="0,6,0,10"/>
+                    <Grid Height="6">
+                      <Border Background="{DynamicResource TrackBg}" CornerRadius="3"/>
+                      <Border Background="#64D2FF" CornerRadius="3" RenderTransformOrigin="0,0.5">
+                        <Border.RenderTransform>
+                          <ScaleTransform x:Name="HumidityScale" ScaleX="0"/>
+                        </Border.RenderTransform>
+                      </Border>
+                    </Grid>
+                    <TextBlock x:Name="DewText" Style="{StaticResource Muted}" FontSize="11" Margin="0,8,0,0"/>
+                  </StackPanel>
+                </Border>
+
+                <!-- pressure -->
+                <Border Style="{StaticResource Tile}" Margin="5,0,0,5" Height="124">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ДАВЛЕНИЕ"/>
+                    <Grid Width="78" Height="50" Margin="0,8,0,0" HorizontalAlignment="Left">
+                      <Path x:Name="PressureArcBg" Stroke="{DynamicResource TrackBg}" StrokeThickness="5" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                      <Path x:Name="PressureArc" Stroke="{DynamicResource Fg}" StrokeThickness="5" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                      <TextBlock x:Name="PressureText" Text="—" FontSize="17" FontFamily="{StaticResource DisplayFont}"
+                                 HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </Grid>
+                    <TextBlock Text="мм рт. ст." Style="{StaticResource Muted}" FontSize="11" Margin="0,4,0,0"/>
+                  </StackPanel>
+                </Border>
+
+                <!-- sun -->
+                <Border Style="{StaticResource Tile}" Margin="0,5,5,0" Height="124">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="СОЛНЦЕ"/>
+                    <Canvas Width="120" Height="44" Margin="0,8,0,0" HorizontalAlignment="Left">
+                      <Path Data="M 4,40 Q 60,-18 116,40" Stroke="{DynamicResource TrackBg}" StrokeThickness="2" StrokeDashArray="2 2"/>
+                      <Line X1="0" X2="120" Y1="40" Y2="40" Stroke="{DynamicResource TrackBg}" StrokeThickness="1"/>
+                      <Ellipse x:Name="SunDot" Width="12" Height="12" Fill="{DynamicResource Warm}">
+                        <Ellipse.Effect>
+                          <DropShadowEffect Color="#FFD60A" BlurRadius="10" ShadowDepth="0" Opacity="0.9"/>
+                        </Ellipse.Effect>
+                      </Ellipse>
+                    </Canvas>
+                    <Grid Margin="0,6,0,0">
+                      <TextBlock x:Name="SunriseText" Style="{StaticResource Muted}" FontSize="11"/>
+                      <TextBlock x:Name="SunsetText" Style="{StaticResource Muted}" FontSize="11" HorizontalAlignment="Right"/>
+                    </Grid>
+                  </StackPanel>
+                </Border>
+
+                <!-- uv -->
+                <Border Style="{StaticResource Tile}" Margin="5,5,5,0" Height="124">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="УФ-ИНДЕКС"/>
+                    <TextBlock x:Name="UvText" Text="—" FontSize="26" FontFamily="{StaticResource DisplayFont}" Margin="0,6,0,0"/>
+                    <TextBlock x:Name="UvDesc" Style="{StaticResource Muted}" FontSize="11"/>
+                    <Grid Height="6" Margin="0,10,0,0">
+                      <Border CornerRadius="3">
+                        <Border.Background>
+                          <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#30D158" Offset="0"/>
+                            <GradientStop Color="#FFD60A" Offset="0.3"/>
+                            <GradientStop Color="#FF9F0A" Offset="0.55"/>
+                            <GradientStop Color="#FF453A" Offset="0.8"/>
+                            <GradientStop Color="#BF5AF2" Offset="1"/>
+                          </LinearGradientBrush>
+                        </Border.Background>
+                      </Border>
+                      <Canvas>
+                        <Ellipse x:Name="UvMarker" Width="10" Height="10" Fill="White" Stroke="Black" StrokeThickness="1" Canvas.Top="-2"/>
+                      </Canvas>
+                    </Grid>
+                  </StackPanel>
+                </Border>
+
+                <!-- precipitation -->
+                <Border Style="{StaticResource Tile}" Margin="5,5,5,0" Height="124">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ОСАДКИ"/>
+                    <TextBlock x:Name="PrecipText" Text="—" FontSize="26" FontFamily="{StaticResource DisplayFont}" Margin="0,6,0,0"/>
+                    <TextBlock x:Name="PrecipDesc" Style="{StaticResource Muted}" FontSize="11" TextWrapping="Wrap"/>
+                  </StackPanel>
+                </Border>
+
+                <!-- hourly -->
+                <Border Style="{StaticResource Tile}" Margin="5,5,0,0" Height="124">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ПО ЧАСАМ"/>
+                    <UniformGrid x:Name="HoursPanel" Rows="1" Margin="0,8,0,0"/>
+                  </StackPanel>
+                </Border>
+              </UniformGrid>
+            </Grid>
+
+            <!-- ======== CHAT ======== -->
+            <Grid x:Name="ChatPage" Width="640" Visibility="Collapsed">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <DockPanel Margin="0,0,0,10">
+                <ComboBox x:Name="ChatProviderBox" Style="{StaticResource SoftCombo}" Width="260" SelectionChanged="ChatProvider_Changed">
+                  <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                      <DockPanel LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Right" Text="{Binding Hint}" Foreground="{DynamicResource Fg2}" FontSize="11.5"
+                                   Margin="14,0,0,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Name}" FontSize="13" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                      </DockPanel>
+                    </DataTemplate>
+                  </ComboBox.ItemTemplate>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                  <Button x:Name="VoiceNameButton" Style="{StaticResource GhostPill}" Padding="10,5" Margin="0,0,6,0"
+                          ToolTip="Голос Gemini" Click="VoiceName_Click"/>
+                  <TextBlock x:Name="VoiceStatusText" Style="{StaticResource Muted}" MaxWidth="100" Margin="0,0,6,0"
+                             VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Visibility="Collapsed"/>
+                  <Button x:Name="VoiceAssistantButton" Style="{StaticResource GhostPill}" Content="Голос"
+                          Padding="10,5" Margin="0,0,6,0" ToolTip="Голосовой диалог Gemini Live"
+                          Click="VoiceAssistant_Click"/>
+                  <Button x:Name="ChatSizeButton" Style="{StaticResource IconButton}" Width="30" Height="30" FontSize="12" Content="&#xE740;" ToolTip="Больше места (для входа и капчи)" Click="ChatSize_Click"/>
+                  <Button Style="{StaticResource IconButton}" Width="30" Height="30" FontSize="12" Content="&#xE72C;" ToolTip="Обновить" Click="ChatReload_Click"/>
+                  <Button Style="{StaticResource IconButton}" Width="30" Height="30" FontSize="12" Content="&#xE8A7;" ToolTip="Открыть в браузере" Click="ChatOpenExternal_Click"/>
+                </StackPanel>
+              </DockPanel>
+              <Border Grid.Row="1" CornerRadius="18" Height="470" Background="{DynamicResource TileBg}"
+                      BorderBrush="{DynamicResource TileStroke}" BorderThickness="1" x:Name="ChatFrame">
+                <Grid x:Name="ChatHost">
+                  <TextBlock x:Name="ChatPlaceholder" Text="Загружаю чат…" Style="{StaticResource Muted}"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+              </Border>
+              <!-- Claude Code sits on the chat window's edge and types along with you -->
+              <v:CharacterView x:Name="ChatBuddy" Grid.Row="1" Kind="clawd" HorizontalAlignment="Right" VerticalAlignment="Top"
+                               Margin="0,-31,104,0" Visibility="Collapsed" Panel.ZIndex="5">
+                <v:CharacterView.LayoutTransform>
+                  <ScaleTransform ScaleX="1.6" ScaleY="1.6"/>
+                </v:CharacterView.LayoutTransform>
+              </v:CharacterView>
+            </Grid>
+
+            <!-- ======== TIMER ======== -->
+            <StackPanel x:Name="TimerPage" Width="580" Visibility="Collapsed">
+              <Border Background="{DynamicResource TileBg}" CornerRadius="14" Padding="3" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                  <RadioButton x:Name="TimerModeTimer" Style="{StaticResource Segment}" GroupName="TimerMode" Content="Таймер" IsChecked="True" Checked="TimerMode_Checked"/>
+                  <RadioButton x:Name="TimerModePomodoro" Style="{StaticResource Segment}" GroupName="TimerMode" Content="Помодоро" Checked="TimerMode_Checked"/>
+                  <RadioButton x:Name="TimerModeStopwatch" Style="{StaticResource Segment}" GroupName="TimerMode" Content="Секундомер" Checked="TimerMode_Checked"/>
+                </StackPanel>
+              </Border>
+              <Border Style="{StaticResource Tile}" Margin="0,10,0,0">
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid Width="132" Height="132">
+                    <Ellipse Stroke="{DynamicResource TrackBg}" StrokeThickness="7"/>
+                    <Path x:Name="TimerRing" Stroke="{DynamicResource Accent}" StrokeThickness="7"
+                          StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                      <TextBlock x:Name="TimerBig" Text="05:00" FontSize="30" FontFamily="{StaticResource DisplayFont}"
+                                 HorizontalAlignment="Center"/>
+                      <TextBlock x:Name="TimerPhase" Style="{StaticResource Muted}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                  </Grid>
+                  <StackPanel Grid.Column="1" Margin="18,0,0,0" VerticalAlignment="Center">
+                    <WrapPanel x:Name="TimerPresets"/>
+                    <StackPanel x:Name="TimerCustomRow" Orientation="Horizontal" Margin="0,4,0,0">
+                      <TextBox x:Name="TimerMinutesBox" Style="{StaticResource SoftBox}" Width="64" Height="30" Text="5"
+                               KeyDown="TimerMinutesBox_KeyDown"/>
+                      <TextBlock Text="мин" Style="{StaticResource Muted}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                    </StackPanel>
+                    <CheckBox x:Name="PomodoroFocusSwitch" Style="{StaticResource Switch}" Margin="0,8,0,0" Visibility="Collapsed"
+                              Content="«Не беспокоить» во время работы" Click="PomodoroFocus_Click"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                      <Button x:Name="TimerStartButton" Style="{StaticResource AccentPill}" Content="Старт" Click="TimerStart_Click" Margin="0,0,8,0"/>
+                      <Button x:Name="TimerResetButton" Style="{StaticResource GhostPill}" Content="Сброс" Click="TimerReset_Click"/>
+                    </StackPanel>
+                  </StackPanel>
+                </Grid>
+              </Border>
+            </StackPanel>
+
+            <!-- ======== CLIPBOARD: history / shelf / text tools ======== -->
+            <StackPanel x:Name="ClipPage" Width="600" Visibility="Collapsed">
+              <DockPanel Margin="0,0,0,10">
+                <Border Background="{DynamicResource TileBg}" CornerRadius="14" Padding="3" HorizontalAlignment="Left">
+                  <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="ClipSegHistory" Style="{StaticResource Segment}" GroupName="ClipSeg" Content="История" IsChecked="True" Checked="ClipSeg_Checked"/>
+                    <RadioButton x:Name="ClipSegShelf" Style="{StaticResource Segment}" GroupName="ClipSeg" Content="Полка" Checked="ClipSeg_Checked"/>
+                    <RadioButton x:Name="ClipSegText" Style="{StaticResource Segment}" GroupName="ClipSeg" Content="Текст" Checked="ClipSeg_Checked"/>
+                  </StackPanel>
+                </Border>
+                <Button Style="{StaticResource GhostPill}" Content="Очистить" HorizontalAlignment="Right" Padding="12,5" Click="ClipClear_Click"/>
+              </DockPanel>
+
+              <StackPanel x:Name="ClipHistoryPanel">
+                <ScrollViewer MaxHeight="360" VerticalScrollBarVisibility="Hidden">
+                  <StackPanel x:Name="ClipList"/>
+                </ScrollViewer>
+              </StackPanel>
+
+              <StackPanel x:Name="ShelfPanel" Visibility="Collapsed">
+                <ScrollViewer MaxHeight="330" VerticalScrollBarVisibility="Hidden">
+                  <StackPanel x:Name="ShelfList"/>
+                </ScrollViewer>
+              </StackPanel>
+
+              <StackPanel x:Name="TextPanel" Visibility="Collapsed">
+                <TextBox x:Name="TextToolsBox" Style="{StaticResource SoftBox}" AcceptsReturn="True" TextWrapping="Wrap"
+                         Height="104" VerticalScrollBarVisibility="Auto" TextChanged="TextToolsBox_TextChanged"/>
+                <WrapPanel x:Name="TextToolButtons" Margin="0,10,0,0"/>
+                <TextBlock x:Name="TextToolsStatus" Style="{StaticResource Muted}" Margin="2,2,0,0"/>
+                <Border x:Name="QrFrame" Background="White" CornerRadius="14" Padding="8" HorizontalAlignment="Left"
+                        Margin="0,10,0,0" Visibility="Collapsed">
+                  <Image x:Name="QrImage" Width="150" Height="150" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                </Border>
+              </StackPanel>
+            </StackPanel>
+
+            <!-- ======== NOTES ======== -->
+            <StackPanel x:Name="NotesPage" Width="580" Visibility="Collapsed">
+              <!-- multi-line text must be accepted, or a pasted text keeps only its first line -->
+              <TextBox x:Name="NewNoteBox" Style="{StaticResource SoftBox}" MinHeight="36" MaxHeight="150" AcceptsReturn="True"
+                       TextWrapping="Wrap" VerticalScrollBarVisibility="Hidden" PreviewKeyDown="NewNoteBox_KeyDown"
+                       TextChanged="NewNoteBox_TextChanged" MaxLength="100000"/>
+              <ScrollViewer MaxHeight="340" VerticalScrollBarVisibility="Hidden">
+                <StackPanel x:Name="NotesList"/>
+              </ScrollViewer>
+            </StackPanel>
+
+            <!-- ======== CALENDAR ======== -->
+            <StackPanel x:Name="CalendarPage" Width="580" Visibility="Collapsed">
+              <Border Style="{StaticResource Tile}">
+                <StackPanel>
+                  <TextBlock Style="{StaticResource Caption}" Text="БЛИЖАЙШЕЕ"/>
+                  <StackPanel x:Name="EventsList" Margin="0,8,0,0"/>
+                </StackPanel>
+              </Border>
+              <Border Style="{StaticResource Tile}" Margin="0,10,0,0">
+                <StackPanel>
+                  <TextBlock Style="{StaticResource Caption}" Text="НАПОМНИТЬ"/>
+                  <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="130"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="ReminderTitleBox" Style="{StaticResource SoftBox}" Height="30" KeyDown="Reminder_KeyDown"/>
+                    <TextBox x:Name="ReminderWhenBox" Grid.Column="1" Style="{StaticResource SoftBox}" Height="30" Margin="8,0,0,0"
+                             KeyDown="Reminder_KeyDown"/>
+                    <Button Grid.Column="2" Style="{StaticResource AccentPill}" Content="Добавить" Margin="8,0,0,0" Click="ReminderAdd_Click"/>
+                  </Grid>
+                  <TextBlock x:Name="ReminderHint" Style="{StaticResource Muted}" FontSize="11" Margin="0,4,0,0"
+                             Text="Время: 18:30, завтра 9:00, через 20 мин, 15.11 14:00"/>
+                </StackPanel>
+              </Border>
+              <Border Style="{StaticResource Tile}" Margin="0,10,0,0">
+                <StackPanel>
+                  <TextBlock Style="{StaticResource Caption}" Text="GOOGLE / OUTLOOK / ЛЮБОЙ КАЛЕНДАРЬ (ICS)"/>
+                  <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="IcsBox" Style="{StaticResource SoftBox}" Height="30"/>
+                    <Button Grid.Column="1" Style="{StaticResource ToolChip}" Content="Подключить" Margin="8,0,0,0" Click="IcsApply_Click"/>
+                  </Grid>
+                  <TextBlock x:Name="IcsStatus" Style="{StaticResource Muted}" FontSize="11" Margin="0,4,0,0" TextWrapping="Wrap"
+                             Text="Google Календарь → Настройки календаря → «Секретный адрес в формате iCal»."/>
+                </StackPanel>
+              </Border>
+            </StackPanel>
+
+            <!-- ======== SYSTEM ======== -->
+            <StackPanel x:Name="SystemPage" Width="600" Visibility="Collapsed">
+              <!-- control centre: radios, VPN, clean desktop, dock, power -->
+              <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                <StackPanel>
+                  <DockPanel>
+                    <TextBlock x:Name="BatteryLine" DockPanel.Dock="Right" Style="{StaticResource Muted}" Visibility="Collapsed"/>
+                    <TextBlock Style="{StaticResource Caption}" Text="ПУНКТ УПРАВЛЕНИЯ"/>
+                  </DockPanel>
+                  <UniformGrid x:Name="ControlTiles" Columns="6" Margin="0,12,0,0"/>
+                  <WrapPanel x:Name="PowerButtons" Margin="0,10,0,0"/>
+                </StackPanel>
+              </Border>
+              <Border x:Name="MixerTile" Style="{StaticResource Tile}" Margin="0,0,0,10" Visibility="Collapsed">
+                <StackPanel>
+                  <TextBlock Style="{StaticResource Caption}" Text="ГРОМКОСТЬ ПРОГРАММ"/>
+                  <StackPanel x:Name="MixerRows" Margin="0,8,0,0"/>
+                </StackPanel>
+              </Border>
+              <UniformGrid Columns="3">
+                <Border Style="{StaticResource Tile}" Margin="0,0,5,0">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ПРОЦЕССОР"/>
+                    <TextBlock x:Name="CpuText" Text="—" FontSize="24" FontFamily="{StaticResource DisplayFont}" Margin="0,4,0,8"/>
+                    <Grid Height="5"><Border Background="{DynamicResource TrackBg}" CornerRadius="2.5"/>
+                      <Border Background="{DynamicResource AccentBlue}" CornerRadius="2.5" RenderTransformOrigin="0,0.5">
+                        <Border.RenderTransform><ScaleTransform x:Name="CpuBar" ScaleX="0"/></Border.RenderTransform></Border></Grid>
+                  </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="5,0,5,0">
+                  <StackPanel>
+                    <TextBlock x:Name="GpuCaption" Style="{StaticResource Caption}" Text="ВИДЕОКАРТА" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock x:Name="GpuText" Text="—" FontSize="24" FontFamily="{StaticResource DisplayFont}" Margin="0,4,0,8"/>
+                    <Grid Height="5"><Border Background="{DynamicResource TrackBg}" CornerRadius="2.5"/>
+                      <Border Background="{DynamicResource Accent}" CornerRadius="2.5" RenderTransformOrigin="0,0.5">
+                        <Border.RenderTransform><ScaleTransform x:Name="GpuBar" ScaleX="0"/></Border.RenderTransform></Border></Grid>
+                  </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="5,0,0,0">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ПАМЯТЬ"/>
+                    <TextBlock x:Name="RamText" Text="—" FontSize="24" FontFamily="{StaticResource DisplayFont}" Margin="0,4,0,8"/>
+                    <Grid Height="5"><Border Background="{DynamicResource TrackBg}" CornerRadius="2.5"/>
+                      <Border Background="#BF5AF2" CornerRadius="2.5" RenderTransformOrigin="0,0.5">
+                        <Border.RenderTransform><ScaleTransform x:Name="RamBar" ScaleX="0"/></Border.RenderTransform></Border></Grid>
+                  </StackPanel>
+                </Border>
+              </UniformGrid>
+
+              <UniformGrid Columns="2" Margin="0,10,0,0">
+                <!-- Discord voice -->
+                <Border Style="{StaticResource Tile}" Margin="0,0,5,0">
+                  <StackPanel>
+                    <DockPanel>
+                      <Border x:Name="DiscordBadge" Width="34" Height="34" CornerRadius="17" Background="#5865F2">
+                        <TextBlock Text="&#xE7F6;" FontFamily="{StaticResource IconFont}" Foreground="White" FontSize="14"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                      </Border>
+                      <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Discord" FontSize="13.5" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="DiscordStatus" Style="{StaticResource Muted}" Text="Не в голосовом канале"/>
+                      </StackPanel>
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                      <Button x:Name="MicMuteButton" Style="{StaticResource Pill}" Content="Микрофон: вкл" Padding="12,5"
+                              Margin="0,0,6,0" Click="MicMute_Click"/>
+                      <Button x:Name="DiscordMuteButton" Style="{StaticResource Pill}" Content="Звук Discord: вкл" Padding="12,5"
+                              Click="DiscordMute_Click"/>
+                    </StackPanel>
+                  </StackPanel>
+                </Border>
+                <!-- focus -->
+                <Border Style="{StaticResource Tile}" Margin="5,0,0,0">
+                  <StackPanel>
+                    <DockPanel>
+                      <Border Width="34" Height="34" CornerRadius="17" Background="#5E5CE6">
+                        <TextBlock Text="&#xE708;" FontFamily="{StaticResource IconFont}" Foreground="White" FontSize="14"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                      </Border>
+                      <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Не беспокоить" FontSize="13.5" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="FocusStatus" Style="{StaticResource Muted}" Text="Выключено"/>
+                      </StackPanel>
+                    </DockPanel>
+                    <WrapPanel Margin="0,10,0,0">
+                      <Button Style="{StaticResource ToolChip}" Content="30 мин" Padding="11,5" Margin="0,0,6,6" Tag="30" Click="Focus_Click"/>
+                      <Button Style="{StaticResource ToolChip}" Content="1 ч" Padding="11,5" Margin="0,0,6,6" Tag="60" Click="Focus_Click"/>
+                      <Button Style="{StaticResource ToolChip}" Content="2 ч" Padding="11,5" Margin="0,0,6,6" Tag="120" Click="Focus_Click"/>
+                      <Button x:Name="FocusOffButton" Style="{StaticResource GhostPill}" Content="Выключить" Padding="11,5" Margin="0,0,6,6" Tag="0" Click="Focus_Click"/>
+                    </WrapPanel>
+                  </StackPanel>
+                </Border>
+              </UniformGrid>
+
+              <UniformGrid Columns="2" Margin="0,10,0,0">
+                <Border Style="{StaticResource Tile}" Margin="0,0,5,0">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="МИКРОФОН И КАМЕРА СЕЙЧАС"/>
+                    <TextBlock x:Name="PrivacyText" Margin="0,8,0,0" TextWrapping="Wrap" FontSize="12.5" Text="Никто не использует"/>
+                  </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="5,0,0,0">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ЗАРЯД УСТРОЙСТВ"/>
+                    <TextBlock x:Name="BatteryText" Margin="0,8,0,0" TextWrapping="Wrap" FontSize="12.5" Text="Проверяю…"/>
+                  </StackPanel>
+                </Border>
+              </UniformGrid>
+            </StackPanel>
+
+            <!-- ======== SETTINGS: sidebar + one section at a time ======== -->
+            <Grid x:Name="SettingsPage" Width="660" Height="430" Visibility="Collapsed">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <DockPanel>
+                <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+                  <Button DockPanel.Dock="Left" Style="{StaticResource GhostPill}" Foreground="#FF6961" Content="Выйти" Click="Exit_Click"/>
+                  <!-- the Atoll channel on Telegram: news, betas, ideas -->
+                  <Button DockPanel.Dock="Right" Width="30" Height="30" Cursor="Hand" ToolTip="Канал Atoll в Telegram" Click="Telegram_Click"
+                          Background="Transparent" BorderThickness="0" Padding="0" Margin="4,0,0,0">
+                    <Button.Template>
+                      <ControlTemplate TargetType="Button">
+                        <Grid>
+                          <Ellipse Fill="#2AABEE"/>
+                          <Path Fill="White" Data="M7.2,14.6 L21.6,9.1 C22.3,8.8 22.9,9.3 22.7,10.2 L20.3,21.6 C20.1,22.4 19.6,22.6 18.9,22.2 L15.3,19.5 L13.5,21.2 C13.3,21.4 13.1,21.6 12.7,21.6 L13,17.9 L19.7,11.8 C20,11.5 19.6,11.4 19.2,11.6 L10.9,16.9 L7.3,15.8 C6.5,15.5 6.5,15 7.2,14.6 Z"
+                                Stretch="Uniform" Margin="7,7,8,7"/>
+                        </Grid>
+                      </ControlTemplate>
+                    </Button.Template>
+                  </Button>
+                  <Button x:Name="DonateButton" DockPanel.Dock="Right" Style="{StaticResource GhostPill}" Padding="10,6" Visibility="Collapsed"
+                          ToolTip="Поддержать разработку Atoll" Click="Donate_Click">
+                    <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="&#xEB52;" FontFamily="{StaticResource IconFont}" FontSize="11" Foreground="#FF5C8A" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                      <TextBlock Text="Поддержать" VerticalAlignment="Center"/>
+                    </StackPanel>
+                  </Button>
+                </DockPanel>
+                <StackPanel x:Name="SettingsNav"/>
+              </DockPanel>
+              <ScrollViewer x:Name="SettingsScroll" Grid.Column="1" Margin="12,0,0,0" VerticalScrollBarVisibility="Hidden">
+                <Grid x:Name="SettingsSections">
+                  <StackPanel Tag="Внешний вид|&#xE790;">
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ТЕМЫ"/>
+                    <WrapPanel x:Name="ThemeGallery" Margin="0,10,0,0"/>
+                    <WrapPanel Margin="0,2,0,0">
+                      <Button Style="{StaticResource GhostPill}" Padding="12,6" Margin="0,0,8,6" Click="ThemeStore_Click" Content="Галерея тем из интернета"/>
+                      <Button Style="{StaticResource GhostPill}" Padding="12,6" Margin="0,0,8,6" Click="Photo_Click" Content="Своё фото…"/>
+                      <Button x:Name="PhotoRemoveButton" Style="{StaticResource GhostPill}" Padding="12,6" Margin="0,0,8,6" Click="PhotoRemove_Click"
+                              Content="Убрать фото" Visibility="Collapsed"/>
+                    </WrapPanel>
+                    <TextBlock x:Name="ThemeStoreStatus" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                    <WrapPanel x:Name="ThemeStore" Margin="0,8,0,0"/>
+                    <StackPanel x:Name="ThemeEditorHost" Margin="0,6,0,0"/>
+                  </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="СТИЛЬ"/>
+                    <UniformGrid Columns="2" Margin="0,10,0,0">
+                      <Border x:Name="StyleDocked" Tag="dock" CornerRadius="16" BorderThickness="2" Padding="8" Margin="0,0,5,0"
+                              Background="{DynamicResource ChipBg}" Cursor="Hand" MouseLeftButtonUp="StyleCard_Click">
+                        <StackPanel>
+                          <Border Height="58" CornerRadius="10" ClipToBounds="True">
+                            <Border.Background>
+                              <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3B3F8F" Offset="0"/><GradientStop Color="#6A4BC4" Offset="1"/>
+                              </LinearGradientBrush>
+                            </Border.Background>
+                            <Border Width="78" Height="17" Background="Black" CornerRadius="0,0,9,9" VerticalAlignment="Top">
+                              <Border Height="1.5" Margin="10,0,10,0" VerticalAlignment="Bottom" CornerRadius="1">
+                                <Border.Background>
+                                  <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#5B8CFF" Offset="0"/><GradientStop Color="#A066FF" Offset="0.5"/><GradientStop Color="#3DE1FF" Offset="1"/>
+                                  </LinearGradientBrush>
+                                </Border.Background>
+                              </Border>
+                            </Border>
+                          </Border>
+                          <TextBlock Text="У края" FontSize="12.5" FontWeight="SemiBold" Margin="2,8,0,0"/>
+                          <TextBlock Text="Вырастает из края экрана" Style="{StaticResource Muted}" FontSize="10.5" Margin="2,1,0,0"/>
+                        </StackPanel>
+                      </Border>
+                      <Border x:Name="StyleFloating" Tag="float" CornerRadius="16" BorderThickness="2" Padding="8" Margin="5,0,0,0"
+                              Background="{DynamicResource ChipBg}" Cursor="Hand" MouseLeftButtonUp="StyleCard_Click">
+                        <StackPanel>
+                          <Border Height="58" CornerRadius="10" ClipToBounds="True">
+                            <Border.Background>
+                              <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3B3F8F" Offset="0"/><GradientStop Color="#6A4BC4" Offset="1"/>
+                              </LinearGradientBrush>
+                            </Border.Background>
+                            <Border Width="72" Height="17" Background="Black" CornerRadius="8.5" VerticalAlignment="Top" Margin="0,6,0,0"/>
+                          </Border>
+                          <TextBlock Text="Плавающий" FontSize="12.5" FontWeight="SemiBold" Margin="2,8,0,0"/>
+                          <TextBlock Text="Пилюля чуть ниже края" Style="{StaticResource Muted}" FontSize="10.5" Margin="2,1,0,0"/>
+                        </StackPanel>
+                      </Border>
+                    </UniformGrid>
+                  </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <CheckBox x:Name="DarkSwitch" Style="{StaticResource Switch}" Click="DarkSwitch_Click" Content="Тёмная тема"/>
+                    <DockPanel Margin="0,0,0,8">
+                      <TextBlock DockPanel.Dock="Left" Text="Размер острова" VerticalAlignment="Center" Margin="0,0,12,0" FontSize="13"/>
+                      <TextBlock x:Name="ScaleValue" DockPanel.Dock="Right" Style="{StaticResource Muted}" VerticalAlignment="Center" MinWidth="40"
+                                 TextAlignment="Right" Margin="10,0,0,0"/>
+                      <Slider x:Name="ScaleSlider" Style="{StaticResource SoftSlider}" Minimum="80" Maximum="130" TickFrequency="5"
+                              IsSnapToTickEnabled="True" VerticalAlignment="Center" ValueChanged="ScaleSlider_ValueChanged"/>
+                    </DockPanel>
+                    <CheckBox x:Name="GlassSwitch" Style="{StaticResource Switch}" Click="Glass_Click" Content="Матовое стекло"/>
+                    <DockPanel x:Name="TintRow" Margin="0,4,0,4">
+                      <TextBlock Text="Тон стекла" FontSize="12.5" VerticalAlignment="Center"/>
+                      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource IconButton}" Width="28" Height="28" FontSize="11" Content="&#xE738;" Click="TintMinus_Click"/>
+                        <TextBlock x:Name="TintLabel" Width="46" TextAlignment="Center" FontSize="12.5" VerticalAlignment="Center"/>
+                        <Button Style="{StaticResource IconButton}" Width="28" Height="28" FontSize="11" Content="&#xE710;" Click="TintPlus_Click"/>
+                      </StackPanel>
+                    </DockPanel>
+                    <CheckBox x:Name="FadeSwitch" Style="{StaticResource Switch}" Click="Fade_Click" Content="Прозрачный низ"/>
+                  </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ПЕРЕЛИВАНИЕ В ПОКОЕ"/>
+                    <WrapPanel x:Name="AuraChips" Margin="0,10,0,0"/>
+                  </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <CheckBox x:Name="BounceSwitch" Style="{StaticResource Switch}" Click="Bounce_Click" Content="Пружинка"/>
+                    <DockPanel Margin="0,6,0,6">
+                      <TextBlock Text="Скорость анимации" FontSize="12.5" VerticalAlignment="Center"/>
+                      <Border Background="{DynamicResource TileBg}" CornerRadius="13" Padding="2" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                          <RadioButton x:Name="SpeedNormal" Style="{StaticResource Segment}" GroupName="Speed" Content="Обычная" Checked="Speed_Checked"/>
+                          <RadioButton x:Name="SpeedFast" Style="{StaticResource Segment}" GroupName="Speed" Content="Быстрая" Checked="Speed_Checked"/>
+                        </StackPanel>
+                      </Border>
+                    </DockPanel>
+                    <DockPanel Margin="0,0,0,6">
+                      <TextBlock Text="Иконки страниц" FontSize="12.5" VerticalAlignment="Center"/>
+                      <Border Background="{DynamicResource TileBg}" CornerRadius="13" Padding="2" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                          <RadioButton x:Name="IconsHover" Style="{StaticResource Segment}" GroupName="Icons" Content="При наведении" Checked="Icons_Checked"/>
+                          <RadioButton x:Name="IconsAlways" Style="{StaticResource Segment}" GroupName="Icons" Content="Всегда" Checked="Icons_Checked"/>
+                        </StackPanel>
+                      </Border>
+                    </DockPanel>
+                    <CheckBox x:Name="ReactiveSwitch" Style="{StaticResource Switch}" Click="Reactive_Click" Content="Живой отклик"/>
+                    <CheckBox x:Name="LiquidSwitch" Style="{StaticResource Switch}" Click="Liquid_Click" Content="Живые волны"/>
+                    <DockPanel x:Name="LiquidRow" Margin="0,0,0,6" Visibility="Collapsed">
+                      <TextBlock DockPanel.Dock="Left" Text="Сила волн" Style="{StaticResource Muted}" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                      <TextBlock x:Name="LiquidValue" DockPanel.Dock="Right" Style="{StaticResource Muted}" VerticalAlignment="Center" MinWidth="36"
+                                 TextAlignment="Right" Margin="10,0,0,0"/>
+                      <Slider x:Name="LiquidSlider" Style="{StaticResource SoftSlider}" Minimum="10" Maximum="100" VerticalAlignment="Center"
+                              ValueChanged="LiquidSlider_ValueChanged"/>
+                    </DockPanel>
+                  </StackPanel>
+                </Border>
+
+
+                <Border Style="{StaticResource Tile}">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ЦВЕТ ОСТРОВА"/>
+                    <WrapPanel x:Name="SwatchPanel" Margin="0,10,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                      <TextBox x:Name="ColorBox" Style="{StaticResource SoftBox}" Width="110" Height="30" KeyDown="ColorBox_KeyDown"/>
+                      <Button Style="{StaticResource ToolChip}" Content="Применить" Margin="8,0,0,0" Click="ColorApply_Click"/>
+                    </StackPanel>
+                  </StackPanel>
+                </Border>
+                  </StackPanel>
+                  <StackPanel Tag="Персонаж|&#xE77B;" Visibility="Collapsed">
+                <Border Style="{StaticResource Tile}">
+                  <WrapPanel x:Name="CharacterGallery"/>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="0,10,0,0">
+                  <StackPanel>
+                    <CheckBox x:Name="HandDrawnSwitch" Style="{StaticResource Switch}" Click="HandDrawn_Click" Content="Нарисовано от руки (покадрово)"/>
+                    <CheckBox x:Name="ClaudeGlowSwitch" Style="{StaticResource Switch}" Click="ClaudeGlow_Click" Content="Оранжевая подсветка Claude"/>
+                  </StackPanel>
+                </Border>
+                  </StackPanel>
+                  <StackPanel Tag="Главная|&#xE80F;" Visibility="Collapsed">
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <WrapPanel>
+                      <CheckBox x:Name="HomeActionsChip" Style="{StaticResource ChipToggle}" Content="Быстрые действия" Click="HomeLayout_Click"/>
+                      <CheckBox x:Name="HomeMusicChip" Style="{StaticResource ChipToggle}" Content="Музыка" Click="HomeLayout_Click"/>
+                      <CheckBox x:Name="HomeWeatherChip" Style="{StaticResource ChipToggle}" Content="Погода" Click="HomeLayout_Click"/>
+                      <CheckBox x:Name="HomeAppsChip" Style="{StaticResource ChipToggle}" Content="Приложения" Click="HomeLayout_Click"/>
+                    </WrapPanel>
+                  </StackPanel>
+                </Border>
+                  </StackPanel>
+                  <StackPanel Tag="Поведение|&#xE713;" Visibility="Collapsed">
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <DockPanel>
+                    <ComboBox x:Name="LanguageBox" DockPanel.Dock="Right" Style="{StaticResource SoftCombo}" Width="250"
+                              SelectionChanged="LanguageBox_SelectionChanged">
+                      <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                          <DockPanel LastChildFill="True">
+                            <TextBlock DockPanel.Dock="Right" Text="{Binding Hint}" Foreground="{DynamicResource Fg2}" FontSize="11.5"
+                                       Margin="14,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Name}" FontSize="13" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                          </DockPanel>
+                        </DataTemplate>
+                      </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <StackPanel VerticalAlignment="Top" Margin="0,1,0,0">
+                      <TextBlock Text="Язык интерфейса" FontSize="13"/>
+                      <TextBlock x:Name="LanguageSub" Text="Language" Style="{StaticResource Muted}" Margin="0,2,0,0"/>
+                    </StackPanel>
+                  </DockPanel>
+                </Border>
+                <Border x:Name="UpdatesTile" Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <DockPanel>
+                      <Button x:Name="UpdateButton" DockPanel.Dock="Right" Style="{StaticResource AccentPill}" Padding="14,7"
+                              Visibility="Collapsed" Click="UpdateNow_Click"/>
+                      <Button DockPanel.Dock="Right" Style="{StaticResource GhostPill}" Margin="0,0,8,0" Padding="12,7"
+                              Click="CheckUpdates_Click" Content="Проверить сейчас"/>
+                      <Button DockPanel.Dock="Right" Style="{StaticResource GhostPill}" Margin="0,0,8,0" Padding="12,7"
+                              Click="WhatsNew_Click" Content="Что нового"/>
+                      <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Обновления" FontSize="13"/>
+                        <TextBlock x:Name="UpdateStatus" Style="{StaticResource Muted}" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                      </StackPanel>
+                    </DockPanel>
+                    <CheckBox x:Name="AutoUpdateSwitch" Style="{StaticResource Switch}" Margin="0,10,0,0" Click="AutoUpdate_Click"
+                              Content="Проверять обновления автоматически"/>
+                  </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <CheckBox x:Name="HoverSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Раскрывать при наведении"/>
+                    <CheckBox x:Name="SmartSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Умный остров"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,-4,0,6"
+                               Text="Открывается на том, что важно сейчас (таймер, звонок, скопированное, музыка) или на вкладке, которую вы обычно открываете в это время. Пока вы печатаете, не раскрывается от курсора, а сообщения ждут паузы. При низком заряде ноутбука включает облегчённую графику. Привычки хранятся только на этом ПК."/>
+                    <Button Style="{StaticResource GhostPill}" HorizontalAlignment="Left" Padding="12,6" Margin="0,0,0,10"
+                            Content="Забыть привычки" Click="ResetHabits_Click"/>
+                    <TextBlock Text="Прятать остров поверх программ" FontSize="13" Margin="0,6,0,6"/>
+                    <WrapPanel x:Name="HideAppChips"/>
+                    <TextBlock x:Name="HideAppsEmpty" Style="{StaticResource Muted}" Text="Например, игры без полного экрана или программы для созвонов" TextWrapping="Wrap" Margin="0,0,0,6"/>
+                    <DockPanel Margin="0,0,0,10">
+                      <Button DockPanel.Dock="Right" Style="{StaticResource GhostPill}" Padding="12,6" Margin="8,0,0,0" Content="Добавить" Click="HideAppAdd_Click"/>
+                      <ComboBox x:Name="HideAppPicker" Style="{StaticResource SoftCombo}"/>
+                    </DockPanel>
+                    <CheckBox x:Name="LockSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Закрепить на месте (не перетаскивать)"/>
+                    <CheckBox x:Name="CapsSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Показывать Caps Lock"/>
+                    <CheckBox x:Name="LayoutSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Показывать смену раскладки"/>
+                    <CheckBox x:Name="LevelsSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Показывать громкость и яркость рядом с островом"/>
+                    <CheckBox x:Name="ProgressSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Копирование, распаковка и другие долгие задачи — на острове"/>
+                    <CheckBox x:Name="MonitorSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Переходить на монитор, где сейчас курсор"/>
+                    <CheckBox x:Name="DiscordShowSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Показывать звонок Discord на острове"/>
+                    <CheckBox x:Name="DiscordSideSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Звонок Discord — отдельным островком справа"/>
+                    <CheckBox x:Name="CaptureSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Скрывать остров на скриншотах и демонстрации экрана"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,-4,0,8"
+                               Text="Если выключить, остров будет виден на скриншотах, записи и в Zoom/Discord — стекло при этом продолжает работать. Пока работает запись NVIDIA, остров сам остаётся видимым — иначе она не пишет рабочий стол"/>
+                    <CheckBox x:Name="FullscreenSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Прятать в играх и полноэкранном режиме"/>
+                    <DockPanel Margin="0,0,0,10">
+                      <ComboBox x:Name="OpenHotkeyBox" DockPanel.Dock="Right" Style="{StaticResource SoftCombo}" Width="200"
+                                SelectionChanged="OpenHotkey_Changed"/>
+                      <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Открывать остров клавишами" FontSize="13"/>
+                        <TextBlock x:Name="OpenHotkeyStatus" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                      </StackPanel>
+                    </DockPanel>
+                    <CheckBox x:Name="LiteSwitch" Style="{StaticResource Switch}" Click="Lite_Click" ToolTip="Без стекла, свечения и эффектов: заметно меньше нагрузка" Content="Облегчённая графика для слабых ПК"/>
+                    <Button Style="{StaticResource GhostPill}" HorizontalAlignment="Left" Padding="12,6" Margin="0,0,0,10"
+                            Content="Скопировать отчёт о плавности" Click="CopyPerfReport_Click"
+                            ToolTip="Если остров дёргается — отправьте этот отчёт разработчику"/>
+                    <CheckBox x:Name="GameStatsSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="В играх показывать FPS и нагрузку вместо полного скрытия"/>
+                    <DockPanel Margin="0,0,0,8">
+                      <Button x:Name="FpsGrantButton" DockPanel.Dock="Right" Style="{StaticResource GhostPill}" Padding="12,5"
+                              Content="Разрешить" Visibility="Collapsed" Click="FpsGrant_Click"/>
+                      <StackPanel VerticalAlignment="Center">
+                        <TextBlock x:Name="FpsStatus" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                        <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,2,0,0"
+                                   Text="Поверх игр в «эксклюзивном полноэкранном» режиме ничего показать нельзя — выберите «Оконный без рамки»."/>
+                      </StackPanel>
+                    </DockPanel>
+                    <CheckBox x:Name="KaraokeSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Слова песни прямо в острове (караоке)"/>
+                    <CheckBox x:Name="NotifySwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Сообщения Telegram, Discord, Viber… на острове"/>
+                    <CheckBox x:Name="NotifyAllSwitch" Style="{StaticResource Switch}" Click="Behavior_Click" Content="Уведомления всех приложений, не только мессенджеров"/>
+                    <TextBlock x:Name="NotifyHint" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,-4,0,8" Visibility="Collapsed"/>
+                    <CheckBox x:Name="AutostartSwitch" Style="{StaticResource Switch}" Click="Autostart_Click" Content="Запускать вместе с Windows"/>
+                    <CheckBox x:Name="CleanDesktopSwitch" Style="{StaticResource Switch}" Click="CleanDesktopSwitch_Click"
+                              Content="Чистый рабочий стол: прятать значки"/>
+                    <Button Style="{StaticResource AccentPill}" HorizontalAlignment="Left" Margin="0,12,0,0" Padding="14,7"
+                            Click="ResetPosition_Click" ToolTip="Поставить остров ровно по центру вверху экрана">
+                      <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE8E3;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="13" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="Выровнять по центру" VerticalAlignment="Center"/>
+                      </StackPanel>
+                    </Button>
+                    <Button x:Name="UninstallButton" Style="{StaticResource DangerPill}" HorizontalAlignment="Left" Margin="0,10,0,0" Padding="14,7"
+                            Click="Uninstall_Click" ToolTip="Удалить приложение, автозапуск и хуки Claude Code">
+                      <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE74D;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="13" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBlock Text="Удалить Atoll" VerticalAlignment="Center"/>
+                      </StackPanel>
+                    </Button>
+                  </StackPanel>
+                </Border>
+                  </StackPanel>
+                  <StackPanel Tag="Действия|&#xE756;" Visibility="Collapsed">
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <TextBlock Text="Команда для кнопки «Команда»" Margin="0,0,0,6"/>
+                    <TextBox x:Name="CommandBox" Style="{StaticResource SoftBox}" Height="30" LostFocus="CommandBox_LostFocus"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                      <TextBlock Text="Переводить на язык" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                      <TextBox x:Name="TranslateBox" Style="{StaticResource SoftBox}" Width="60" Height="30" LostFocus="TranslateBox_LostFocus"/>
+                      <TextBlock Style="{StaticResource Muted}" Text="ru, en, uk, de…" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <CheckBox x:Name="RecSysSwitch" Style="{StaticResource Switch}" Margin="0,10,0,4" Click="RecordAudio_Click" Content="Запись экрана: звук компьютера"/>
+                    <CheckBox x:Name="RecMicSwitch" Style="{StaticResource Switch}" Click="RecordAudio_Click" Content="Запись экрана: микрофон"/>
+                    <TextBlock Style="{StaticResource Muted}" FontSize="11" Margin="0,6,0,0" TextWrapping="Wrap"
+                               Text="Ctrl+Alt+S — скриншот области · Ctrl+Alt+R — запись · Ctrl+Alt+I — показать/спрятать · Ctrl+Alt+Space — командная строка"/>
+                  </StackPanel>
+                </Border>
+                  </StackPanel>
+                  <StackPanel Tag="ИИ-агенты|&#xE8BD;" Visibility="Collapsed">
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Text="ГОЛОСОВОЙ АССИСТЕНТ · GEMINI LIVE"/>
+                    <TextBlock Text="API-ключ Gemini" Margin="0,8,0,4"/>
+                    <PasswordBox x:Name="GeminiVoiceApiKeyBox" Style="{StaticResource SoftPasswordBox}" Height="30"
+                                 LostFocus="GeminiVoiceApiKeyBox_LostFocus"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" FontSize="11" Margin="0,5,0,0"
+                               Text="Если поле пустое, используется GEMINI_API_KEY."/>
+                    <StackPanel Margin="0,10,0,0">
+                      <DockPanel Margin="0,0,0,4">
+                        <TextBlock Text="Громкость ИИ-ассистента" FontSize="13" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="VoiceVolumeValue" DockPanel.Dock="Right" Style="{StaticResource Muted}"
+                                   MinWidth="40" TextAlignment="Right" VerticalAlignment="Center"/>
+                      </DockPanel>
+                      <Slider x:Name="VoiceVolumeSlider" Style="{StaticResource SoftSlider}" Minimum="0" Maximum="100"
+                              TickFrequency="1" VerticalAlignment="Center" ValueChanged="VoiceVolumeSlider_ValueChanged"/>
+                    </StackPanel>
+                  </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <DockPanel>
+                      <TextBlock Text="✳" FontSize="16" Foreground="{DynamicResource ClaudeOrange}" VerticalAlignment="Center"/>
+                      <TextBlock Style="{StaticResource Caption}" Text="CLAUDE CODE" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                      <Button x:Name="ClaudeHooksButton" Style="{StaticResource Pill}" HorizontalAlignment="Right"
+                              Content="Подключить" Click="ClaudeHooks_Click"/>
+                    </DockPanel>
+                    <TextBlock x:Name="ClaudeHooksStatus" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                  </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tile}" Margin="0,0,0,10">
+                  <StackPanel>
+                    <DockPanel>
+                      <TextBlock Text="◎" FontSize="16" Foreground="#10A37F" VerticalAlignment="Center"/>
+                      <TextBlock Style="{StaticResource Caption}" Text="CODEX (OPENAI)" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                      <Button x:Name="CodexHooksButton" Style="{StaticResource Pill}" HorizontalAlignment="Right"
+                              Content="Подключить" Click="CodexHooks_Click"/>
+                    </DockPanel>
+                    <TextBlock x:Name="CodexHooksStatus" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                  </StackPanel>
+                </Border>
+                  </StackPanel>
+                  <StackPanel Tag="Раскладка|&#xE8A9;" Visibility="Collapsed">
+                    <StackPanel x:Name="LayoutHost"/>
+                  </StackPanel>
+                  <StackPanel Tag="Проверка|&#xE9D9;" Visibility="Collapsed">
+                    <StackPanel x:Name="CheckHost"/>
+                  </StackPanel>
+                </Grid>
+              </ScrollViewer>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <!-- ripples from clicks spread here (clipped to the island) -->
+        <Canvas x:Name="RippleLayer" IsHitTestVisible="False"/>
+      </Grid>
+      </Grid>
+    </Border>
+  </Grid>
+</Window>
