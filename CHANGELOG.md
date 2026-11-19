@@ -2,7 +2,7 @@
 
 All notable changes to Atoll (formerly "Dynamic Island for Windows"). Русская версия каждого пункта — ниже английской.
 
-## Unreleased
+## 1.8.0 fix
 
 - **Fixed: the island didn't open with light graphics off** on some PCs (it only worked after turning light graphics on in an older version). The screen grab for the glass (Magnification API) can crash Windows' own code; it now leaves a marker before the first grabs and is switched off for good (solid glass) if the last start died inside it. On top of that, if a start doesn't finish, the next start turns light graphics on by itself and says so.
 - Crashes and unhandled errors are now written to the log (`%LOCALAPPDATA%\DynamicIsland\log.txt`).

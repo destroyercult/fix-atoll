@@ -27,12 +27,12 @@ jobs:
 
       - name: Zip
         shell: pwsh
-        run: Compress-Archive -Path publish/DynamicIsland -DestinationPath DynamicIsland-win-x64.zip
+        run: Compress-Archive -Path publish/DynamicIsland -DestinationPath Atoll-1.8.0-fix-portable.zip
 
       - uses: actions/upload-artifact@v4
         with:
-          name: DynamicIsland-win-x64
-          path: src/DynamicIsland-win-x64.zip
+          name: Atoll-1.8.0-fix-portable
+          path: src/Atoll-1.8.0-fix-portable.zip
 
       - name: Installer (Inno Setup)
         shell: pwsh
@@ -45,5 +45,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: DynamicIsland-setup
+          name: Atoll-1.8.0-fix-setup
           path: src/dist/*-setup.exe

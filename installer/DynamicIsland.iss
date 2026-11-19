@@ -15,7 +15,7 @@
 AppId={{6D2A9B57-3C41-4E8E-9F0B-5A7C1E2D8B90}
 AppName=Atoll
 AppVersion={#AppVer}
-AppVerName=Atoll {#AppVer}
+AppVerName=Atoll {#AppVer} fix
 AppPublisher=Fuwni
 AppPublisherURL=https://github.com/Fuwni/dynamic-island-windows
 AppSupportURL=https://github.com/Fuwni/dynamic-island-windows/issues
@@ -29,7 +29,7 @@ PrivilegesRequired=lowest
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 OutputDir=..\dist
-OutputBaseFilename=Atoll-{#AppVer}-setup
+OutputBaseFilename=Atoll-{#AppVer}-fix-setup
 SetupIconFile=..\Assets\icon.ico
 UninstallDisplayIcon={app}\DynamicIsland.exe
 UninstallDisplayName=Atoll
